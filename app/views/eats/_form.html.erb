@@ -1,0 +1,14 @@
+<%= render "layouts/errors", :object => @eat %>
+
+<%= simple_form_for @eat do |f| %>
+  <%= f.input :name %>
+  <%= f.input :category %>
+  <%= f.input :address %>
+  <%= f.input :phone %>
+  <%= f.input :website %>
+  <%= f.input :hours %>
+  <%= f.input :location %>
+  <%= f.input :neighborhood %>
+  <%= f.text_area :menu %>
+  <%= f.button :submit %>
+<% end %>
