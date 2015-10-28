@@ -1,0 +1,35 @@
+- Google Map - what's near me?
+- See pics - user uploaded and instagram
+- Rating
+- Comments/Review - incorporate twitter?
+- Cost
+- Sort by price, name, location
+
+
+
+Schema:
+
+EATS
+- name
+- type (bar, restaurant, cafe, etc.)
+- address
+- phone number
+- website
+- hours
+- location (NW, SE, etc.)
+- neighborhood
+- menu
+- has many photos
+- has many reviews
+
+
+REVIEWS
+- title
+- content
+- rating
+
+
+PHOTOS
+
+
+USERS
