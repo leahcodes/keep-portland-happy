@@ -1,0 +1,7 @@
+<%= simple_form_for [@eat, @image] do |f| %>
+  <%= f.attachment_field :url, multiple: true %>
+  <%= f.input :title %>
+  <%= f.input :caption %>
+  <%= f.input :main, as: :boolean %>
+  <%= f.button :submit %>
+<% end %>

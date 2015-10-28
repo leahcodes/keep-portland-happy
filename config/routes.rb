@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
  root 'eats#index'
 
- resources :eats
+ resources :eats do
+   resources :images
+ end
+
 end

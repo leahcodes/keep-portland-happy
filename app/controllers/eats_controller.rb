@@ -5,6 +5,7 @@ class EatsController < ApplicationController
 
   def show
     @eat = Eat.find(params[:id])
+    @image = Image.new
   end
 
   def new
@@ -46,6 +47,6 @@ class EatsController < ApplicationController
 
   private
   def eat_params
-    params.require(:eat).permit(:name, :category, :address, :phone, :website, :hours, :location, :neighborhood, :menu)
+    params.require(:eat).permit(:name, :category, :address, :phone, :website, :hours, :location, :profile_image, :neighborhood, :menu, images_files: [])
   end
 end

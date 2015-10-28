@@ -1,8 +1,19 @@
 <div class="jumbotron">
-  <h1>happy hour</h1>
+  <h1>happy eats</h1>
 </div>
 
-<%= link_to "Make a new Eat", new_eat_path %>
-<% @eats.each do |eat| %>
-<p><%= link_to eat.name, eat %></p>
-<% end %>
+<div class="col-sm-6">
+  <div class="jumbotron">
+    <h3>top pdx happy eats</h3>
+      <% @eats.each do |eat| %>
+        <h4><%= link_to eat.name, eat %></h4>
+        <% end %>
+  </div>
+</div>
+
+<div class="col-sm-6">
+  <div class="jumbotron">
+    <h3>newest pdx happy eats</h3>
+
+  </div>
+</div>

@@ -13,6 +13,9 @@ gem 'simple_form'
 gem 'devise'
 gem 'mailcatcher'
 gem 'seed_dump'
+gem "paperclip", "~> 4.3"
+gem "refile", require: "refile/rails"
+gem "refile-mini_magick"
 
 group :development do
   gem 'byebug'
