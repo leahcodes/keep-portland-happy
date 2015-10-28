@@ -9,6 +9,8 @@
   <%= f.input :hours %>
   <%= f.input :location %>
   <%= f.input :neighborhood %>
-  <%= f.text_area :menu %>
+  <%= f.label "Menu" %>
+  <%= f.text_area :menu, class: 'form-control', rows: '10' %>
+  <br>
   <%= f.button :submit %>
 <% end %>

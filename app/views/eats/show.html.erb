@@ -1,0 +1,12 @@
+
+<p><%= link_to "Edit this Eat", edit_eat_path(@eat) %></p>
+<p><%= link_to "Delete this Eat", eat_path(@eat), data: { confirm: "Are you sure you want to do that?" }, method: 'delete' %></p>
+<h1><%= @eat.name %></h1>
+<h2>Category: <%= @eat.category %></h2>
+<h2>Address: <%= @eat.address %></h2>
+<h2>Phone: <%= @eat.phone %></h2>
+<h2>Website: <a href="<%= @eat.website %>"><%= @eat.website %></a></h2>
+<h2>Hours: <%= @eat.hours %></h2>
+<h2>Part of Town: <%= @eat.location %> (<%= @eat.neighborhood %>)</h2>
+<h2>Menu:SHOW/HIDE THIS WITH CLICK</h2>
+<p><%= simple_format(@eat.menu) %></p>
