@@ -19,6 +19,7 @@
 body {
   font-family: 'Vollkorn', serif;
   font-weight: 400;
+  background-image: url('/images/dots.png');
 }
 
 label {
@@ -26,6 +27,19 @@ label {
 }
 
 .eat-card {
-  border: 1px solid black;
-  padding: 3px;
+  border: 2px dotted #bbb;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.eat-card-text, .eat-card-image {
+  display: inline-block;
+  padding: 5px;
+}
+
+.rotate-180 {
+-webkit-transform: rotate(-180deg);
+-moz-transform: rotate(-180deg);
+-ms-transform: rotate(-180deg);
 }

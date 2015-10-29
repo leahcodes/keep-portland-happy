@@ -9,5 +9,7 @@
 <h2>Website: <a href="<%= @eat.website %>"><%= @eat.website %></a></h2>
 <h2>Hours: <%= @eat.hours %></h2>
 <h2>Part of Town: <%= @eat.location %> (<%= @eat.neighborhood %>)</h2>
-<h2>Menu:SHOW/HIDE THIS WITH CLICK</h2>
-<p><%= simple_format(@eat.menu) %></p>
+<h2 class="menuShow">Menu <span class="caret menu-caret"></span></h2>
+<div class="menu">
+  <p><%= simple_format(@eat.menu) %></p>
+</div>

@@ -15,3 +15,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  $(".menu").hide();
+  $(".menuShow").click(function(event) {
+    $(".menu").fadeToggle();
+    $(".menu-caret").toggleClass('rotate-180');
+  });
+});
