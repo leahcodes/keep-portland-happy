@@ -1,4 +1,5 @@
 - Google Map - what's near me?
+- Google reviews
 - See pics - user uploaded and instagram
 - Rating
 - Comments/Review - incorporate twitter?
