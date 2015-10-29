@@ -17,6 +17,7 @@ gem "paperclip", "~> 4.3"
 gem "refile", require: "refile/rails"
 gem "refile-mini_magick"
 
+
 group :development do
   gem 'byebug'
   gem 'web-console'
