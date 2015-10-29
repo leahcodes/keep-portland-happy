@@ -13,14 +13,26 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require turbolinks
 //= require refile
 //= require_tree .
 
 $(function() {
+
   $(".menu").hide();
   $(".menuShow").click(function(event) {
     $(".menu").fadeToggle();
     $(".menu-caret").toggleClass('rotate-180');
   });
+
+  $(".main-logo").mouseover(function(){
+    var newSrc = $(this).attr("src").replace("/images/logo-blue.png", "/images/logo-happy-green.png" );
+    $(this).attr("src", newSrc);
+  });
+  $(".main-logo").mouseout(function(){
+    var newSrc = $(this).attr("src").replace("/images/logo-happy-green.png", "/images/logo-blue.png" );
+    $(this).attr("src", newSrc);
+  });
+
 });

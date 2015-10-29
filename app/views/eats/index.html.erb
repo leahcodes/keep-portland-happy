@@ -9,6 +9,9 @@
           </div>
           <div class="eat-card-text">
             <h4><%= link_to eat.name, eat %></h4>
+              <%= link_to user_favorites_path(current_user, user_id: current_user.id, eat_id: eat.id), :method => :post do %>
+                <p>favorite</p>
+              <% end %>
             <h4><%= eat.location %> (<%= eat.location %>)</h4>
             <h4>Rating: *****</h4>
           </div>
@@ -26,7 +29,10 @@
             <%= image_tag attachment_url(eat, :profile_image, :fill, 150, 150, format: "jpg") %>
           </div>
           <div class="eat-card-text">
-            <h4><%= link_to eat.name, eat %></h4>
+            <h4><%= link_to eat.name, eat %> </h4>
+            <%= link_to user_favorites_path(current_user, user_id: current_user.id, eat_id: eat.id), :method => :post do %>
+              <p>favorite</p>
+            <% end %>
             <h4><%= eat.location %> (<%= eat.location %>)</h4>
             <h4>Rating: *****</h4>
           </div>

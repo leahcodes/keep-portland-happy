@@ -26,13 +26,22 @@ label {
   font-weight: normal;
 }
 
-// .main-jumbotron {
-//   display: inline-block;
-// }
-//
-// .navbar .navbar-default {
-//   display: inline-block;
-// }
+.main-jumbotron {
+  padding: 0px;
+}
+.main-jumbotron:hover {
+  opacity: 0.7;
+}
+
+.logo-jumbotron {
+  padding: 10px;
+  background-color:rgba(0, 0, 0, 0.0);
+  margin: 10px;
+}
+
+.navbar-default {
+  margin-top: 20px;
+}
 
 .eat-card {
   border: 2px dotted #bbb;

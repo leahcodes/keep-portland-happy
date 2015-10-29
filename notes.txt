@@ -5,6 +5,7 @@
 - Comments/Review - incorporate twitter?
 - Cost
 - Sort by price, name, location
+- search bar
 
 
 

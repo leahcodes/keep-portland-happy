@@ -4,4 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   attachment :profile_image
+  has_many :favorites
+  has_many :eats, :through => :favorites
 end
