@@ -1,3 +1,8 @@
+<% if user_signed_in? && current_user.admin? %>
+  <div class="jumbotron">
+    <%= link_to "Add a New Eat", new_eat_path, remote: true %>
+  </end>
+<% end %>
 
 <div class="col-sm-6">
   <div class="jumbotron">
@@ -9,8 +14,12 @@
           </div>
           <div class="eat-card-text">
             <h4><%= link_to eat.name, eat %></h4>
-              <%= link_to user_favorites_path(current_user, user_id: current_user.id, eat_id: eat.id), :method => :post do %>
-                <p>favorite</p>
+              <% if Favorite.exists?(:user_id => current_user.id, :eat_id => eat.id) %>
+                <p><span class="glyphicon glyphicon-heart"></span></p>
+              <% else %>
+                <%= link_to user_favorites_path(current_user, user_id: current_user.id, eat_id: eat.id), :method => :post do %>
+                  <p><span class="glyphicon glyphicon-heart-empty"></span></p>
+                <% end %>
               <% end %>
             <h4><%= eat.location %> (<%= eat.location %>)</h4>
             <h4>Rating: *****</h4>

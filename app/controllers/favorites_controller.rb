@@ -11,6 +11,12 @@ class FavoritesController < ApplicationController
     redirect_to eats_path
   end
 
+  def destroy
+    @favorite = Favorite.find(params[:id])
+    @favorite.destroy
+    redirect_to eats_path
+  end
+
   private
   def favorite_params
     params.require(:favorite).permit(:user_id, :eat_id)
