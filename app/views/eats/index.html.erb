@@ -6,14 +6,22 @@
   <div class="jumbotron">
     <h3>top pdx happy eats</h3>
       <% @eats.each do |eat| %>
-        <h4><%= link_to eat.name, eat %></h4>
-        <% end %>
+        <div class="eat-card">
+          <h4><%= link_to eat.name, eat %></h4>
+          <%= image_tag attachment_url(eat, :profile_image, :fill, 150, 150, format: "jpg") %>
+        </div>
+      <% end %>
   </div>
 </div>
 
 <div class="col-sm-6">
   <div class="jumbotron">
     <h3>newest pdx happy eats</h3>
-
+      <% @by_date.each do |eat| %>
+        <div class="eat-card">
+          <h4><%= link_to eat.name, eat %></h4>
+          <%= image_tag attachment_url(eat, :profile_image, :fill, 150, 150, format: "jpg") %>
+        </div>
+      <% end %>
   </div>
 </div>

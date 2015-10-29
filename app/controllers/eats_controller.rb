@@ -1,6 +1,7 @@
 class EatsController < ApplicationController
   def index
     @eats = Eat.all
+    @by_date = Eat.order("created_at DESC")
   end
 
   def show
