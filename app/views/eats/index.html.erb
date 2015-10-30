@@ -1,6 +1,6 @@
 <% if user_signed_in? && current_user.admin? %>
   <div class="jumbotron">
-    <%= link_to "Add a New Eat", new_eat_path, remote: true %>
+    <%= link_to "Add a New Eat", new_eat_path, id: "new_eat", remote: true %>
   </end>
 <% end %>
 

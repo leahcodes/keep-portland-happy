@@ -1,6 +1,6 @@
 <%= render "layouts/errors", :object => @eat %>
 
-<%= simple_form_for @eat do |f| %>
+<%= simple_form_for @eat, remote: true do |f| %>
   <%= f.input :name %>
   <%= f.input :category %>
   <%= f.input :address %>
