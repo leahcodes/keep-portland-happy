@@ -18,10 +18,13 @@ class EatsController < ApplicationController
     @eat = Eat.new(eat_params)
     if @eat.save
       flash[:notice] = "New Eat Added! Yum!"
-      redirect_to eats_path
+      respond_to do |format|
+        format.html { redirect_to eats_path }
+        format.js
+      end
     else
       flash[:alert] = "Whoopsies, there was an error somewhere!"
-      redirect_to new_eat_path
+      redirect_to eats_path
     end
   end
 
