@@ -17,11 +17,11 @@
       </div>
     </a>
 
-        <div class="jumbotron">
+        <div class="panel-container">
           <h2>faves</h2>
           <% if user_signed_in? %>
             <% current_user.favorites.each do |fave| %>
-              <h3><%= fave.eat.name %> <%= link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, user_favorite_path(current_user, fave), {:method => 'delete'} %></h3>
+              <p><%= fave.eat.name %> <%= link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, user_favorite_path(current_user, fave), {:method => 'delete'} %></p>
             <% end %>
           <% else %>
             <p><%= link_to "Sign in", new_user_session_path %> to get started!</p>

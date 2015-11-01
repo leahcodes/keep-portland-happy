@@ -2,7 +2,7 @@
 
   <div class="eat-card">
     <div class="eat-card-image">
-      <%= image_tag attachment_url(eat, :profile_image, :fill, 150, 150, format: "jpg") %>
+      <%= image_tag attachment_url(eat, :profile_image, :fill, 300, 300, format: "jpg"), class: "img-responsive" %>
     </div>
     <div class="eat-card-text">
       <h4><%= link_to eat.name, eat %></h4>
@@ -13,6 +13,11 @@
             <%= link_to user_favorites_path(current_user, user_id: current_user.id, eat_id: eat.id), :method => :post do %>
               <p><span class="glyphicon glyphicon-heart-empty"></span></p>
             <% end %>
+          <% end %>
+          <% if current_user.admin? %>
+            <%= link_to ('<span class="glyphicon glyphicon-trash"></span>').html_safe, eat_path(eat),
+                            :data => {:confirm => "You sure?",
+                            :method => 'delete'} %>
           <% end %>
         <% end %>
       <h4><%= eat.location %> (<%= eat.location %>)</h4>

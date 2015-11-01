@@ -6,7 +6,7 @@
 <% end %>
 
 <div class="col-sm-6">
-  <div class="jumbotron top-eats">
+  <div class="panel-container top-eats">
     <h3>top pdx happy eats</h3>
     <% @eats.each do |eat| %>
       <%= render eat %>
@@ -15,7 +15,7 @@
 </div>
 
 <div class="col-sm-6">
-  <div class="jumbotron newest-eats">
+  <div class="panel-container newest-eats">
     <h3>newest pdx happy eats</h3>
     <% @eats.order("created_at DESC").each do |eat| %>
       <%= render eat %>

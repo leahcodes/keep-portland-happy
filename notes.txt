@@ -6,6 +6,7 @@
 - Cost
 - Sort by price, name, location
 - search bar
+- pagination
 
 
 

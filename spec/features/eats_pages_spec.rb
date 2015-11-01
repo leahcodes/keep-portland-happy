@@ -14,6 +14,10 @@ describe "working with eats" do
     visit "/"
     click_link "Add a New Eat"
     fill_in 'Name', :with => "Test eat"
+    fill_in 'Category', :with => "Test category"
+    fill_in 'Address', :with => "Test address"
+    fill_in 'Location', :with => "Test location"
+    fill_in 'Neighborhood', :with => "Test neighborhood"   
     click_on("Create Eat")
     page.should have_content "Test eat"
   end
