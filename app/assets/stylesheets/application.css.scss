@@ -21,6 +21,9 @@ body {
   font-weight: 400;
   background-image: url('/images/dots.png');
 }
+.center {
+  text-align: center;
+}
 
 label {
   font-weight: normal;
@@ -63,4 +66,8 @@ label {
 
 .glyphicon-heart, .glyphicon-heart-empty {
   color: #e73885;
+}
+
+#new-eat-form-container {
+  display: block;
 }

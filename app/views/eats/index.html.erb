@@ -1,8 +1,8 @@
 <% if user_signed_in? && current_user.admin? %>
-  <div class="jumbotron">
+  <div class="col-sm-12">
     <%= link_to "Add a New Eat", new_eat_path, id: "new_eat_link", remote: true %>
     <%= link_to "Hide Form", new_eat_path, id: "hide_eat_form", remote: true %>
-  </end>
+  </div>
 <% end %>
 
 <div class="col-sm-6">
