@@ -1,8 +1,12 @@
 class EatsController < ApplicationController
+
+  respond_to :html
+  respond_to :js
+
   def index
     @eats = Eat.all
-    @by_date = Eat.order("created_at DESC")
     @user = current_user
+    respond_with(@eats)
   end
 
   def show
@@ -12,6 +16,10 @@ class EatsController < ApplicationController
 
   def new
     @eat = Eat.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create

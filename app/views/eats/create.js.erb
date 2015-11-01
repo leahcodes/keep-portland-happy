@@ -1,2 +1,4 @@
-$('#new_eat').remove();
-$('#')
+$('form').hide();
+$('.top-eats').append('<%= j render partial: "eat", locals: {eat: @eat} %>');
+$('.newest-eats').append('<%= j render partial: "eat", locals: {eat: @eat} %>');
+$('#new_eat_link').show();

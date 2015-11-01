@@ -19,7 +19,7 @@
 //= require_tree .
 
 $(function() {
-
+  $("#hide_eat_form").hide();
   $(".menu").hide();
   $(".menuShow").click(function(event) {
     $(".menu").fadeToggle();
