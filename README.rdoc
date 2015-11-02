@@ -1,31 +1,36 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Happy Hours in PDX
 
-Things you may want to cover:
+By Leah Klamkin, 2015
 
-* Ruby version
+Description
 
-* System dependencies
+A site to track the best happy hours in PDX.
 
-* Configuration
+Setup:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Clone this repository
+2. In Mac Terminal: $ bundle install
+3. In Mac Terminal: $ rake db:create
+4. In Mac Terminal: $ rake db:migrate
+5. In Mac Terminal: $ rake db:seed
+6. In Mac Termilal: $ rails server
+7. Navigate to localhost:3000 in your brower
+8. Enjoy
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+this user has all admin abilities:
+username: admin@admin.com
+password: password
 
 
-Interface graphic by <a href="http://www.freepik.com/">Freepik</a> from <a href="http://www.flaticon.com/">Flaticon</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>. Made with <a href="http://logomakr.com" title="Logo Maker">Logo Maker</a>
+Technologies Used
+
+Ruby on Rails, HTML and CSS, Bootstrap, testing with Rspec and Capybara
+
+Copyright (c) 2015 Leah Klamkin
+
+This software is licensed under the MIT license.
+
+Logo graphic by <a href="http://www.freepik.com/">Freepik</a> from <a href="http://www.flaticon.com/">Flaticon</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>. Made with <a href="http://logomakr.com" title="Logo Maker">Logo Maker</a>
