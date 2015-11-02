@@ -1,5 +1,5 @@
 <%= render "layouts/errors", :object => @eat %>
-
+<h1>Make a New Eat <span class="glyphicon glyphicon-cutlery"></span></h1>
 <%= simple_form_for @eat, remote: true do |f| %>
   <%= f.input :name %>
   <%= f.input :category %>

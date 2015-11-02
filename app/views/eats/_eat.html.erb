@@ -10,7 +10,7 @@
           <% if Favorite.exists?(:user_id => current_user.id, :eat_id => eat.id) %>
             <p><span class="glyphicon glyphicon-heart"></span></p>
           <% else %>
-            <%= link_to user_favorites_path(current_user, user_id: current_user.id, eat_id: eat.id), :method => :post do %>
+            <%= link_to user_favorites_path(current_user, user_id: current_user.id, eat_id: eat.id), id: "add-to-favorites", :method => :post do %>
               <p><span class="glyphicon glyphicon-heart-empty"></span></p>
             <% end %>
           <% end %>
