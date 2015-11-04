@@ -16,10 +16,14 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+
+//blue logo color: #52d4d4
+//green happy logo color: #51dd9b
+
 body {
   font-family: 'Vollkorn', serif;
   font-weight: 400;
-  // background-image: url('/images/dots.png');
+  background-image: url("/images/dots.png")
 }
 .center {
   text-align: center;
@@ -29,8 +33,68 @@ label {
   font-weight: normal;
 }
 
-.main-jumbotron {
-  padding: 0px;
+.header {
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+  background: linear-gradient(rgba(100,100,100,0.9), rgba(100,100,100,0.9))
+}
+
+.main-logo {
+  width: 50px;
+}
+
+.header-left-container {
+  width: 20%;
+  float: left;
+  display: inline;
+  text-align: left;
+}
+
+.header-center-container {
+  display: inline;
+  text-align: center;
+  width: 100%;
+}
+
+.header-right-container {
+  display: inline;
+  width: 20%;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: right;
+}
+
+.header-text {
+  display: inline;
+  vertical-align: middle;
+  line-height: normal;
+  letter-spacing: 3px;
+  color: #51dd9b;
+}
+
+.header-link {
+  border: 1px solid #52d4d4;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 5px;
+  text-decoration: none;
+  color: #52d4d4;
+}
+
+.header-link:hover {
+  color: #51dd9b;
+  text-decoration: none;
+  border: 1px solid #51dd9b;
+}
+
+.body-container {
+  padding-top: 100px;
+  z-index: -1;
 }
 .main-jumbotron:hover {
   opacity: 0.7;
