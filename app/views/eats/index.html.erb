@@ -1,24 +1,59 @@
-<% if user_signed_in? && current_user.admin? %>
-  <div class="col-sm-12">
-    <%= link_to "Add a New Eat", new_eat_path, id: "new_eat_link", remote: true %>
-    <%= link_to "Hide Form", new_eat_path, id: "hide_eat_form", remote: true %>
+<div class="main-search-banner">
+  <div class="video-container">
+    <video autoplay loop id="bgvid">
+        <source src="/videos/beer.mp4" type="video/mp4">
+    </video>
   </div>
-<% end %>
-
-<div class="col-sm-6">
-  <div class="panel-container top-eats">
-    <h3>top pdx happy eats</h3>
-    <% @eats.each do |eat| %>
-      <%= render eat %>
-    <% end %>
+  <div class="main-search-text-container">
+    <div class="main-search-text-wrapper">
+      <h1>Where are you right now?</h2>
+      <h3>INPUT BOX GOES HERE</h3>
+    </div>
   </div>
 </div>
 
-<div class="col-sm-6">
-  <div class="panel-container newest-eats">
-    <h3>newest pdx happy eats</h3>
-    <% @eats.order("created_at DESC").each do |eat| %>
-      <%= render eat %>
+
+<!-- <div class="panel-container faves">
+  <h2>faves</h2>
+  <% if user_signed_in? %>
+    <% current_user.favorites.each do |fave| %>
+      <p><%= fave.eat.name %> <%= link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, user_favorite_path(current_user, fave), {:method => 'delete'} %></p>
     <% end %>
+  <% else %>
+    <p><%= link_to "Sign in", new_user_session_path %> to get started!</p>
+  <% end %>
+</div>
+
+<% if notice %>
+  <p class='alert alert-success'><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class='alert alert-danger'><%= alert %></p>
+<% end %> -->
+
+<div class="index-content-container">
+  <% if user_signed_in? && current_user.admin? %>
+    <div class="col-sm-12">
+      <%= link_to "Add a New Eat", new_eat_path, id: "new_eat_link", remote: true %>
+      <%= link_to "Hide Form", new_eat_path, id: "hide_eat_form", remote: true %>
+    </div>
+  <% end %>
+
+  <div class="col-sm-6">
+    <div class="panel-container top-eats">
+      <h1 class="center">top pdx happy hours</h1>
+      <% @eats.each do |eat| %>
+        <%= render eat %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="panel-container newest-eats">
+      <h1 class="center">newest pdx happy hours</h1>
+      <% @eats.order("created_at DESC").each do |eat| %>
+        <%= render eat %>
+      <% end %>
+    </div>
   </div>
 </div>
