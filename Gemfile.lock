@@ -185,6 +185,9 @@ GEM
     refile-mini_magick (0.2.0)
       mini_magick (~> 4.0)
       refile (~> 0.5)
+    refile-postgres (1.1.4)
+      pg
+      refile (~> 0.6.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rest-client (1.8.0)
@@ -294,6 +297,7 @@ DEPENDENCIES
   rails
   refile
   refile-mini_magick
+  refile-postgres
   rspec-rails
   sass-rails
   seed_dump

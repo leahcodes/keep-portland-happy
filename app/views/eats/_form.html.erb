@@ -2,13 +2,14 @@
   <%= render "layouts/errors", :object => @eat %>
   <h1>Make a New Eat <span class="glyphicon glyphicon-cutlery"></span></h1>
   <%= simple_form_for @eat, remote: true do |f| %>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <%= f.input :name %>
     <%= f.input :category %>
     <%= f.input :address %>
     <%= f.input :phone %>
     <%= f.input :website %>
     <%= f.input :hours %>
-    <%= f.input :location %>
+    <%= f.input :location, collection: [ "NW", "SW", "SE", "NE", "N"] %>
     <%= f.input :neighborhood %>
     <%= f.label "Upload display picture" %>
     <%= f.attachment_field :profile_image %>

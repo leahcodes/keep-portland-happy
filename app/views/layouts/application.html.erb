@@ -14,18 +14,37 @@
   <div class="header">
     <div class="header-left-container">
       <a href="/"><img src="/images/logo-blue.png" class="main-logo"></a>
-    </div>
-    <div class="header-center-container">
-      <h1 class="header-text bold">keep portland happy</h1>
-      <br>
-      <h4 class="header-text">leading you to the best pdx happy hours</h4>
+      <div class="header-text-container">
+        <h3 class="header-text bold">keep portland happy</h1>
+        <br>
+        <p class="header-text">leading you to the best pdx happy hours</h4>
+      </div>
     </div>
     <div class="header-right-container">
       <% if !user_signed_in? %>
         <%= link_to "Log In", new_user_session_path, class: "header-link" %>
         <%= link_to "Sign Up", new_user_registration_path, class: "header-link" %>
       <% else %>
-        <a href="/accounts/edit"><%= image_tag attachment_url(current_user, :profile_image, :fill, 50, 50, format: "jpg") %></a>
+        <div class="dropdown faves-dropdown">
+          <p class="header-link" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <% if current_user.favorites.length == 1 %>
+              1 Fave
+            <% else %>
+              <%= current_user.favorites.length %> Faves
+            <% end %>
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <% if current_user.favorites.any? %>
+              <% current_user.favorites.each do |fave| %>
+                <li><%= link_to fave.eat.name, eat_path(fave.eat) %> <%= link_to ('<span class="glyphicon glyphicon-remove red keep-it-together"></span>').html_safe, user_favorite_path(current_user, fave), {:method => 'delete'} %></li>
+              <% end %>
+            <% else %>
+              <li>No faves yet!</li>
+            <% end %>
+          </ul>
+        </div>
+        <a href="/accounts/edit"><%= image_tag attachment_url(current_user, :profile_image, :fill, 70, 35, format: "jpg"), class: "navbar-avatar" %></a>
         <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "header-link" %>
       <% end %>
     </div>
