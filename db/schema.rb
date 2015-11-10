@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105231906) do
+ActiveRecord::Schema.define(version: 20151109211148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20151105231906) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "profile_image_id"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -42,7 +44,7 @@ ActiveRecord::Schema.define(version: 20151105231906) do
     t.string   "title"
     t.string   "url"
     t.boolean  "main"
-    t.integer  "eat_id"
+    t.integer  "review_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "caption"
@@ -53,6 +55,16 @@ ActiveRecord::Schema.define(version: 20151105231906) do
   end
 
   add_index "refile_attachments", ["namespace"], name: "index_refile_attachments_on_namespace", using: :btree
+
+  create_table "reviews", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "rating"
+    t.integer  "user_id"
+    t.integer  "eat_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

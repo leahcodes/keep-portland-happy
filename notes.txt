@@ -1,4 +1,7 @@
+SHOULD BE MOBILE first!
+
 - Google Map - what's near me?
+- Happy hours NOW
 - Google reviews
 - See pics - user uploaded and instagram
 - Rating
@@ -7,6 +10,8 @@
 - Sort by price, name, location
 - search bar
 - pagination
+
+
 
 
 

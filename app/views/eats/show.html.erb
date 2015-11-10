@@ -1,9 +1,14 @@
 <div class="container">
-  <p><%= link_to "Edit this Eat", edit_eat_path(@eat) %></p>
-  <p><%= link_to "Delete this Eat", eat_path(@eat), data: { confirm: "Are you sure you want to do that?" }, method: 'delete' %></p>
-  <%= image_tag attachment_url(@eat, :profile_image, :fill, 300, 300, format: "jpg") %>
+
+  <% if user_signed_in? && current_user.admin? %>
+    <p><%= link_to "Edit this Eat", edit_eat_path(@eat) %></p>
+    <p><%= link_to "Delete this Eat", eat_path(@eat), data: { confirm: "Are you sure you want to do that?" }, method: 'delete' %></p>
+  <% end %>
+
   <h1><%= @eat.name %></h1>
-  <h2>Category: <%= @eat.category %></h2>
+  <h4><%= @eat.category %></h4>
+  <%= image_tag attachment_url(@eat, :profile_image, :fill, 500, 300, format: "jpg") %>
+  
   <h2>Address: <%= @eat.address %></h2>
   <h2>Phone: <%= @eat.phone %></h2>
   <h2>Website: <a href="<%= @eat.website %>"><%= @eat.website %></a></h2>
@@ -14,3 +19,19 @@
     <p><%= simple_format(@eat.menu) %></p>
   </div>
 </div>
+<hr>
+<% if user_signed_in? %>
+  <% if @user_review %>
+    <h3><%= link_to "Edit Your Review", edit_review_path(@eat, @user_review) %>
+  <% else %>
+    <%= render 'reviews/form' %>
+  <% end %>
+<% end %>
+
+<% if @eat.reviews.any? %>
+  <% @eat.reviews.each do |review| %>
+    <h2><%= review.title %></h2>
+    <p><%= review.content %></p>
+    <p>Posted by <%= review.user.email %> on <%= review.created_at %></p>
+  <% end %>
+<% end %>

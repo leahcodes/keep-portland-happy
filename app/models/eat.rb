@@ -1,12 +1,20 @@
 class Eat < ActiveRecord::Base
+  has_many :favorites
+  has_many :users, :through => :favorites
+
+  has_many :reviews
+  has_many :users, :through => :reviews
+
+  
   validates :name, :presence => true
   validates :category, :presence => true
   validates :address, :presence => true
   validates :location, :presence => true
   validates :neighborhood, :presence => true
 
-  has_many :images
   attachment :profile_image
-  has_many :favorites
-  has_many :users, :through => :favorites
+
+
+  geocoded_by :address   # can also be an IP address
+  after_validation :geocode          # auto-fetch coordinates
 end

@@ -11,7 +11,10 @@ class EatsController < ApplicationController
 
   def show
     @eat = Eat.find(params[:id])
-    @image = Image.new
+    @review = Review.new
+    if Review.exists?(user_id: current_user, eat_id: @eat)
+      @user_review = Review.find(user_id: current_user, eat_id: @eat)
+    end
   end
 
   def new
@@ -44,7 +47,10 @@ class EatsController < ApplicationController
     @eat = Eat.find(params[:id])
     if @eat.update(eat_params)
       flash[:notice] = "Changes Saved!"
-      redirect_to eat_path(@eat)
+      respond_to do |format|
+        format.html { redirect_to eat_path(@eat) }
+        format.js
+      end
     else
       flash[:alert] = "Whoopsies, there was an error somewhere!"
       redirect_to edit_eat_path(@eat)

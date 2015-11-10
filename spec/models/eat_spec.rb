@@ -8,6 +8,10 @@ describe Eat do
   it { should validate_presence_of :neighborhood}
 
   it { should have_many :images }
+
   it { should have_many :favorites }
-  it { should have_many(:users).through(:favorites) }
+  it { should have_many(:users) }
+
+  it { should have_many :reviews }
+  # it { should have_many(:users).through(:reviews) }
 end
