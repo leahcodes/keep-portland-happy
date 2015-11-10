@@ -18,7 +18,25 @@
         <% end %>
       <% end %>
       <h4><%= eat.location %> (<%= eat.neighborhood %>)</h4>
-      <h4>Rating: *****</h4>
+      <% if eat.reviews.any? %>
+        <% all_reviews = [] %>
+        <% eat.reviews.each do |review| %>
+          <% all_reviews.push(review.rating) %>
+          <% @avg_rating = all_reviews.inject(0.0) { |sum, el| sum + el } / all_reviews.size %>
+        <% end %>
+
+        <% if @avg_rating.between?(0, 1.5) %>
+           <span class="glyphicon glyphicon-star"></span>
+        <% elsif @avg_rating.between?(1.5, 2.5) %>
+           <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
+        <% elsif @avg_rating.between?(2.5, 3.5) %>
+            <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
+        <% elsif @avg_rating.between?(3.5, 4.5) %>
+           <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
+        <% else @avg_rating.between?(4.5, 5) %>
+            <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
+        <% end %>
+      <% end %>
     </div>
   </div>
 

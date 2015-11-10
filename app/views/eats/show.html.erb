@@ -6,27 +6,37 @@
   <% end %>
 
   <h1><%= @eat.name %></h1>
+  <% if @eat.reviews.any? %>
+    <% all_reviews = [] %>
+    <% @eat.reviews.each do |review| %>
+      <% all_reviews.push(review.rating) %>
+      <% @avg_rating = all_reviews.inject(0.0) { |sum, el| sum + el } / all_reviews.size %>
+    <% end %>
+
+    <% if @avg_rating.between?(0, 1.5) %>
+       <span class="glyphicon glyphicon-star"></span>
+    <% elsif @avg_rating.between?(1.5, 2.5) %>
+       <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
+    <% elsif @avg_rating.between?(2.5, 3.5) %>
+        <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
+    <% elsif @avg_rating.between?(3.5, 4.5) %>
+       <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
+    <% else @avg_rating.between?(4.5, 5) %>
+        <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
+    <% end %>
+
+    <% if all_reviews.length == 1 %>
+      (<%= all_reviews.length %> review)
+    <% else %>
+      (<%= all_reviews.length %> reviews)
+    <% end %>
+    
+  <% else %>
+    No reviews.
+  <% end %>
 
   <h4><%= @eat.category %></h4>
   <%= image_tag attachment_url(@eat, :profile_image, :fill, 500, 300, format: "jpg") %>
-  <br>
-  <% all_reviews = [] %>
-  <% @eat.reviews.each do |review| %>
-    <% all_reviews.push(review.rating) %>
-    <% @avg_rating = all_reviews.inject(0.0) { |sum, el| sum + el } / all_reviews.size %>
-  <% end %>
-
-  <% if @avg_rating.between?(0, 1.5) %>
-     <span class="glyphicon glyphicon-star"></span>
-  <% elsif @avg_rating.between?(1.5, 2.5) %>
-     <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-  <% elsif @avg_rating.between?(2.5, 3.5) %>
-      <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-  <% elsif @avg_rating.between?(3.5, 4.5) %>
-     <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-  <% else @avg_rating.between?(4.5, 5) %>
-      <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-  <% end %>
 
   <h2>Address: <%= @eat.address %></h2>
   <h2>Phone: <%= @eat.phone %></h2>
