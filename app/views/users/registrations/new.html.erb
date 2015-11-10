@@ -42,6 +42,7 @@
 
       <div class="form-inputs form-group">
         <%= f.input :email, required: true, autofocus: true, :input_html => { :class => "form-control custom" } %>
+        <%= f.input :user_name, required: true, autofocus: true, :input_html => { :class => "form-control custom" } %>
         <%= f.input :password, required: true, :input_html => { :class => "form-control custom" }, placeholder: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
         <%= f.input :password_confirmation, required: true, :input_html => { :class => "form-control custom" } %>
         <%= f.label "Upload Display Photo" %>

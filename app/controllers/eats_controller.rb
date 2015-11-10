@@ -12,8 +12,8 @@ class EatsController < ApplicationController
   def show
     @eat = Eat.find(params[:id])
     @review = Review.new
-    if Review.exists?(user_id: current_user, eat_id: @eat)
-      @user_review = Review.find(user_id: current_user, eat_id: @eat)
+    if user_signed_in? && Review.exists?(user_id: current_user.id, eat_id: @eat.id)
+      @user_review = Review.where(user_id: current_user.id, eat_id: @eat.id)
     end
   end
 
@@ -62,6 +62,20 @@ class EatsController < ApplicationController
     @eat.destroy
     flash[:notice] = "Be gone with ye'!"
     redirect_to eats_path
+  end
+
+  def rating_in_stars
+    # if @eat.rating.between?(0-1.5)
+    #    "<span class="glyphicon glyphicon-star"></span>"
+    # elsif @eat.rating.between?(1.5-2.5)
+    #    "<span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>"
+    # elsif @eat.rating.between?(2.5-3.5)
+    #     "<span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>"
+    # elsif @eat.rating.between?(3.5-4.5)
+    #    "<span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>"
+    # else @eat.rating.between?(4.5-5)
+    #     "<span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>"
+    # end
   end
 
   private
