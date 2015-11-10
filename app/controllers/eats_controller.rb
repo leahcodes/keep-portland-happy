@@ -7,6 +7,8 @@ class EatsController < ApplicationController
     @eats = Eat.all
     @user = current_user
     respond_with(@eats)
+      if params[:search_by_location]
+
   end
 
   def show

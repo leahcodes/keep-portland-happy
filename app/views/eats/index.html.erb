@@ -7,7 +7,13 @@
   <div class="main-search-text-container">
     <div class="main-search-text-wrapper">
       <h1>Where are you right now?</h2>
-      <h3>INPUT BOX GOES HERE</h3>
+        <div class="black">
+          <% form_tag eats_path, method: :get %>
+          <p>
+            <%= text_field_tag :search_by_location, params[:search_by_location] %>
+            <%= submit_tag "Search", :name => nil %>
+          </p>
+        </div>
     </div>
   </div>
 </div>
