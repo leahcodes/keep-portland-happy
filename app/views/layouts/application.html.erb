@@ -47,7 +47,13 @@
             <% end %>
           </ul>
         </div>
-        <a href="/accounts/edit"><%= image_tag attachment_url(current_user, :profile_image, :fill, 70, 35, format: "jpg"), class: "navbar-avatar" %></a>
+        <a href="/accounts/edit">
+          <% if current_user.profile_image_id %>
+            <%= image_tag attachment_url(current_user, :profile_image, :fill, 70, 35, format: "jpg"), class: "navbar-avatar" %>
+          <% else %>
+            <%= current_user.user_name %>
+          <% end %>
+        </a>
         <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "header-link" %>
       <% end %>
     </div>

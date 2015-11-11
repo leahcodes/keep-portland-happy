@@ -6,9 +6,14 @@ class EatsController < ApplicationController
   def index
     @eats = Eat.all
     @user = current_user
+    if params[:address]
+      binding.pry
+      new_address = params[:address]
+      @user.update(:address => new_address)
+      @user.save
+      redirect_to eats_path
+    end
     respond_with(@eats)
-      if params[:search_by_location]
-
   end
 
   def show

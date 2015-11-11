@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   attachment :profile_image
-  
 
+  validates_presence_of :address
+  geocoded_by :address
+  after_validation :geocode
 end
