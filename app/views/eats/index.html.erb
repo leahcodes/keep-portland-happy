@@ -9,9 +9,9 @@
       <h1>Where are you right now?</h2>
           <% if user_signed_in? %>
             <div class="black">
-              <%= form_for @user do |f| %>
+              <%= form_for @user, :url => { :controller => "eats", :action => "update" } do |f| %>
               <p>
-                <%= f.text_field :address, class: "form-control" %>
+                <%= f.text_field 'address' %>
                 <%= f.submit "Filter", :name => nil %>
               </p>
               <% end %>

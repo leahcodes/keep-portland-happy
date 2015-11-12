@@ -6,13 +6,6 @@ class EatsController < ApplicationController
   def index
     @eats = Eat.all
     @user = current_user
-    if params[:address]
-      binding.pry
-      new_address = params[:address]
-      @user.update(:address => new_address)
-      @user.save
-      redirect_to eats_path
-    end
     respond_with(@eats)
   end
 
@@ -48,19 +41,26 @@ class EatsController < ApplicationController
 
   def edit
     @eat = Eat.find(params[:id])
+    @user = current_user
   end
 
   def update
     @eat = Eat.find(params[:id])
+    @user = current_user
     if @eat.update(eat_params)
       flash[:notice] = "Changes Saved!"
       respond_to do |format|
         format.html { redirect_to eat_path(@eat) }
         format.js
       end
+    elsif params[:address]
+      new_address = params[:address]
+      @user.update(:address => new_address)
+      @user.save
+      redirect_to eats_path
     else
       flash[:alert] = "Whoopsies, there was an error somewhere!"
-      redirect_to edit_eat_path(@eat)
+      redirect_to eats_path
     end
   end
 
@@ -69,20 +69,6 @@ class EatsController < ApplicationController
     @eat.destroy
     flash[:notice] = "Be gone with ye'!"
     redirect_to eats_path
-  end
-
-  def rating_in_stars
-    # if @eat.rating.between?(0-1.5)
-    #    "<span class="glyphicon glyphicon-star"></span>"
-    # elsif @eat.rating.between?(1.5-2.5)
-    #    "<span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>"
-    # elsif @eat.rating.between?(2.5-3.5)
-    #     "<span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>"
-    # elsif @eat.rating.between?(3.5-4.5)
-    #    "<span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>"
-    # else @eat.rating.between?(4.5-5)
-    #     "<span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>"
-    # end
   end
 
   private

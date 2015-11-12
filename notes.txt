@@ -14,7 +14,7 @@ SHOULD BE MOBILE first!
 
 searching by location:
 - user's location is set to downtown portland by default (powell's?)
-- when they "search", they are updating their location and the eats will reorganize. 
+- when they "search", they are updating their location and the eats will reorganize.
 
 
 Schema:
