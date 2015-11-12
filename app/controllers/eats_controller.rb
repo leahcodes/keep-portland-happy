@@ -8,11 +8,9 @@ class EatsController < ApplicationController
     @eats = Eat.all
     @top_eats = Eat.all #do logic at some point!
     @user = current_user
-    respond_with(@eats)
 
     if params[:search].present?
       @user_params = params[:search]
-      # @user_location = Geocoder.coordinates(@user_params)
       @user.update(:address => @user_params)
       if @user.save
         redirect_to eats_path
