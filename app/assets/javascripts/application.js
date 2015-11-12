@@ -34,4 +34,10 @@ $(function() {
     var newSrc = $(this).attr("src").replace("/images/logo-happy-green.png", "/images/logo-blue.png" );
     $(this).attr("src", newSrc);
   });
+
+  $(".search-results").hide();
+  $(".search-button").click(function() {
+    (".search-results").show();
+  })
+
 });

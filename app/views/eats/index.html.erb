@@ -9,11 +9,11 @@
       <h1>Where are you right now?</h2>
           <% if user_signed_in? %>
             <div class="black">
-              <%= form_for @user, :url => { :controller => "eats", :action => "update" } do |f| %>
-              <p>
-                <%= f.text_field 'address' %>
-                <%= f.submit "Filter", :name => nil %>
-              </p>
+              <%= form_tag eats_path, :method => :get, remote: true do %>
+                <p>
+                  <%= text_field_tag :search, params[:search] %>
+                  <%= submit_tag "Make me happy!", :name => nil, :id => "search-button" %>
+                </p>
               <% end %>
             </div>
           <% else %>
@@ -33,10 +33,16 @@
     </div>
   <% end %>
 
+<div class="col-md-12 center">
+  <iframe width="600" height="450" frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/place?q=<%= @user.address %>&key=AIzaSyBTJUXT4x4Azd5cAqivGUrtTilq_rsF5lk" allowfullscreen></iframe>
+</div>
+
+
   <div class="col-sm-6">
     <div class="panel-container top-eats">
       <h1 class="center">top pdx happy hours</h1>
-      <% @eats.each do |eat| %>
+      <% @top_eats.each do |eat| %>
         <%= render eat %>
       <% end %>
     </div>
@@ -45,7 +51,7 @@
   <div class="col-sm-6">
     <div class="panel-container newest-eats">
       <h1 class="center">newest pdx happy hours</h1>
-      <% @eats.order("created_at DESC").each do |eat| %>
+      <% @newest_eats.each do |eat| %>
         <%= render eat %>
       <% end %>
     </div>

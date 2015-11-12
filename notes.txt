@@ -1,3 +1,21 @@
+<div class="col-md-12 search-results">
+  <% if @searched_eats == nil %>
+    <p>test
+  <% else %>
+    <% for searched_eat in @searched_eats.nearbys(10) %>
+      <%= render eat %>
+      <% end %>
+    <% end %>
+</div>
+
+
+<div class="col-md-12 search-results">
+    <% @eats.nearbys(10).each do |eat| %>
+      <%= render eat %>
+    <% end %>
+</div>
+
+
 SHOULD BE MOBILE first!
 
 - Google Map - what's near me?
