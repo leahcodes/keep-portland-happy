@@ -58,6 +58,9 @@ label {
   font-weight: normal;
 }
 
+input#search {
+  opacity: 0.8;
+}
 .header {
   padding: 10px;
   position: fixed;
@@ -120,6 +123,7 @@ label {
   color: #52d4d4;
   letter-spacing: 2px;
   text-transform: uppercase;
+  background: none;
 }
 
 h1, h2, h3, h4 {

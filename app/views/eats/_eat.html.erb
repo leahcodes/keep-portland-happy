@@ -3,6 +3,9 @@
   <div class="eat-card" style="background-image: url(<%= attachment_url(eat, :profile_image, :fill, 500, 300, format: "jpg") %>); background-style: cover; background-position: center;">
     <div class="eat-card-text">
       <h2 style="display: inline; padding-left: 10px; padding-right: 10px;"><%= link_to eat.name, eat %></h2>
+      <% if user_signed_in? %>
+        <p><%= eat.distance_from(@user.address).round(1) %> miles away</p>
+      <% end %>
         <% if user_signed_in? %>
           <% if Favorite.exists?(:user_id => current_user.id, :eat_id => eat.id) %>
             <span class="glyphicon glyphicon-heart"></span>
@@ -36,6 +39,8 @@
         <% else @avg_rating.between?(4.5, 5) %>
             <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
         <% end %>
+      <% else %>
+      <p>No reviews</p>
       <% end %>
     </div>
   </div>

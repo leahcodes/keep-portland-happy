@@ -10,10 +10,9 @@
           <% if user_signed_in? %>
             <div class="black">
               <%= form_tag eats_path, :method => :get do %>
-                <p>
-                  <%= text_field_tag :search, params[:search] %>
-                  <%= submit_tag "Make me happy!", :name => nil, :id => "search-button" %>
-                </p>
+                  <%= text_field_tag :search, params[:search], class: "form-control" %>
+                  <%= submit_tag "Make me happy!", :name => nil, :class => "header-link", :id => "search-button" %>
+                </div>
               <% end %>
             </div>
           <% else %>
@@ -33,19 +32,21 @@
     </div>
   <% end %>
 
+<% if user_signed_in? %>
 <div class="col-md-12 center">
+  <h1 class="center">Happy hours near you:</h1>
   <iframe width="600" height="450" frameborder="0" style="border:0"
 src="https://www.google.com/maps/embed/v1/place?q=<%= @user.address %>&key=AIzaSyBTJUXT4x4Azd5cAqivGUrtTilq_rsF5lk" allowfullscreen></iframe>
 
-<% if Eat.near(@user.address, 1).any? %>
-  <% Eat.near(@user.address, 1).each do |eat| %>
-    <p><%= eat.name %></p>
+<% if Eat.near(@user.address, 3).any? %>
+  <% Eat.near(@user.address, 3, order: 'distance').each do |eat| %>
+    <p><%= eat.name %>, <%= eat.distance.round(1) %> miles away</p>
   <% end %>
 <% else %>
   <div class="alert alert-danger" role="alert">Shoot! I couldn't find any happy hours near you.</div>
 <% end %>
 </div>
-
+<% end %>
 
   <div class="col-sm-6">
     <div class="panel-container top-eats">
