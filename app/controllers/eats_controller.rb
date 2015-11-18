@@ -88,6 +88,6 @@ class EatsController < ApplicationController
 
   private
   def eat_params
-    params.require(:eat).permit(:name, :category, :address, :phone, :website, :hours, :location, :profile_image, :neighborhood, :menu, :mon_happy_start, :mon_happy_end, :tues_happy_start, :tues_happy_end, :wed_happy_start, :wed_happy_end, :thur_happy_start, :thur_happy_end, :fri_happy_start, :fri_happy_end, :sat_happy_start, :sat_happy_end, :sun_happy_start, :sun_happy_end, :mon_open, :mon_close, :tues_open, :tues_close, :wed_open, :wed_close, :thur_open, :thur_close, :fri_open, :fri_close, :sat_open, :sat_close, :sun_open, :sun_close, images_files: [])
+    params.require(:eat).permit(:name, :category, :address, :phone, :website, :hours, :location, :profile_image, :neighborhood, :menu, :instagram_location_id, :mon_happy_start, :mon_happy_end, :tues_happy_start, :tues_happy_end, :wed_happy_start, :wed_happy_end, :thur_happy_start, :thur_happy_end, :fri_happy_start, :fri_happy_end, :sat_happy_start, :sat_happy_end, :sun_happy_start, :sun_happy_end, :mon_open, :mon_close, :tues_open, :tues_close, :wed_open, :wed_close, :thur_open, :thur_close, :fri_open, :fri_close, :sat_open, :sat_close, :sun_open, :sun_close, images_files: [])
   end
 end

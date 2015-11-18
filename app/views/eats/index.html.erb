@@ -34,12 +34,14 @@
   <% end %>
 
 <% if user_signed_in? %>
-    <h1 class="center">Happy hours near you:</h1>
-    <div class="container">
-      <div class="col-md-7">
+  <h1 class="center">Happy hours near you:</h1>
+  <div class="container">
+    <div class="col-md-7">
+      <div class="google-map">
         <iframe width="500" height="400" frameborder="0" style="border:0"
-  src="https://www.google.com/maps/embed/v1/place?q=<%= @user.address %>&key=AIzaSyBTJUXT4x4Azd5cAqivGUrtTilq_rsF5lk" allowfullscreen></iframe>
-    </div>
+src="https://www.google.com/maps/embed/v1/place?q=<%= @user.address %>&key=AIzaSyBTJUXT4x4Azd5cAqivGUrtTilq_rsF5lk" allowfullscreen></iframe>
+      </div>
+  </div>
 
   <div class="col-md-5">
     <% if Eat.near(@user.address, 2).any? %>
@@ -51,7 +53,7 @@
               <p>Happy hour today:
                 <%= format_time(today_happy_start(eat)) %> - <%= format_time(today_happy_end(eat)) %>
               <% if happy_now?(eat) %>
-                <p class="red">It's happy hour!</p>
+                <h3 class="red">It's happy hour!</p>
               <% else %>
                 <p>(Not currently happy hour)</p>
               <% end %>
@@ -67,6 +69,7 @@
   </div>
 </div>
 <% end %>
+
 
 
   <div class="col-sm-6">

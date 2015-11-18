@@ -282,3 +282,33 @@ video#bgvid {
   margin-top: 5%;
   border-radius: 5px;
 }
+
+.google-map {
+  position: relative;
+  padding-bottom: 75%; // This is the aspect ratio
+  height: 0;
+  overflow: hidden;
+}
+.google-map iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90% !important;
+  height: 90% !important;
+  padding: 5%;
+}
+
+.instagram-container {
+  position: relative;
+  padding-bottom: 75%; // This is the aspect ratio
+  height: 0;
+  overflow: hidden;
+}
+.instagram-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90% !important;
+  height: 90% !important;
+  padding: 5%;
+}

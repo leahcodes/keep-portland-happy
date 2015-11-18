@@ -1,6 +1,10 @@
 <div class="container">
   <div class="col-md-6 col-md-push-6">
     <%= image_tag(attachment_url(@eat, :profile_image, :fill, 500, 300, format: "jpg"), class: "img-responsive") %>
+    <h2>Recent Instagram photos:</h2>
+    <div class="instagram-container">
+    <iframe src="http://widget.websta.me/in/location<%= @eat.instagram_location_id %>/?s=150&w=5&h=5&b=0&p=0" allowtransparency="true" frameborder="0" scrolling="yes" style="border:none;width:100%;" ></iframe>
+    </div>
   </div>
   <div class="col-md-6 col-md-pull-6">
     <% if user_signed_in? && current_user.admin? %>
