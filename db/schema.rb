@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111004929) do
+ActiveRecord::Schema.define(version: 20151118184811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,34 @@ ActiveRecord::Schema.define(version: 20151111004929) do
     t.string   "profile_image_id"
     t.float    "latitude"
     t.float    "longitude"
+    t.float    "mon_happy_start"
+    t.float    "mon_happy_end"
+    t.float    "tues_happy_start"
+    t.float    "tues_happy_end"
+    t.float    "wed_happy_start"
+    t.float    "wed_happy_end"
+    t.float    "thur_happy_start"
+    t.float    "thur_happy_end"
+    t.float    "fri_happy_start"
+    t.float    "fri_happy_end"
+    t.float    "sat_happy_start"
+    t.float    "sat_happy_end"
+    t.float    "sun_happy_start"
+    t.float    "sun_happy_end"
+    t.float    "mon_open"
+    t.float    "mon_close"
+    t.float    "tues_open"
+    t.float    "tues_close"
+    t.float    "wed_open"
+    t.float    "wed_close"
+    t.float    "thur_open"
+    t.float    "thur_close"
+    t.float    "fri_open"
+    t.float    "fri_close"
+    t.float    "sat_open"
+    t.float    "sat_close"
+    t.float    "sun_open"
+    t.float    "sun_close"
   end
 
   create_table "favorites", force: :cascade do |t|

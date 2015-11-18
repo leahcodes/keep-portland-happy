@@ -11,6 +11,7 @@
             <div class="black">
               <%= form_tag eats_path, :method => :get do %>
                   <%= text_field_tag :search, params[:search], class: "form-control" %>
+                  <br>
                   <%= submit_tag "Make me happy!", :name => nil, :class => "header-link", :id => "search-button" %>
                 </div>
               <% end %>
@@ -27,26 +28,46 @@
 <div class="index-content-container">
   <% if user_signed_in? && current_user.admin? %>
     <div class="col-sm-12">
-      <%= link_to "Add a New Eat", new_eat_path, id: "new_eat_link", remote: true %>
+      <%= link_to "Add a New Eat", new_eat_path, id: "new_eat_link", class: "header-link", remote: true %>
       <%= link_to "Hide Form", new_eat_path, id: "hide_eat_form", remote: true %>
     </div>
   <% end %>
 
 <% if user_signed_in? %>
-<div class="col-md-12 center">
-  <h1 class="center">Happy hours near you:</h1>
-  <iframe width="600" height="450" frameborder="0" style="border:0"
-src="https://www.google.com/maps/embed/v1/place?q=<%= @user.address %>&key=AIzaSyBTJUXT4x4Azd5cAqivGUrtTilq_rsF5lk" allowfullscreen></iframe>
+    <h1 class="center">Happy hours near you:</h1>
+    <div class="container">
+      <div class="col-md-7">
+        <iframe width="500" height="400" frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?q=<%= @user.address %>&key=AIzaSyBTJUXT4x4Azd5cAqivGUrtTilq_rsF5lk" allowfullscreen></iframe>
+    </div>
 
-<% if Eat.near(@user.address, 3).any? %>
-  <% Eat.near(@user.address, 3, order: 'distance').each do |eat| %>
-    <p><%= eat.name %>, <%= eat.distance.round(1) %> miles away</p>
-  <% end %>
-<% else %>
-  <div class="alert alert-danger" role="alert">Shoot! I couldn't find any happy hours near you.</div>
-<% end %>
+  <div class="col-md-5">
+    <% if Eat.near(@user.address, 2).any? %>
+      <% Eat.near(@user.address, 2, order: 'distance').each do |eat| %>
+        <div class="eat-result-card">
+          <h3><%= link_to eat.name, eat %> <span class="smaller"><%= eat.distance.round(1) %> miles away</span></h3>
+          <div class="indent-pp">
+            <% if today_happy_end(eat) - today_happy_start(eat) > 0 %>
+              <p>Happy hour today:
+                <%= format_time(today_happy_start(eat)) %> - <%= format_time(today_happy_end(eat)) %>
+              <% if happy_now?(eat) %>
+                <p class="red">It's happy hour!</p>
+              <% else %>
+                <p>(Not currently happy hour)</p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="alert alert-danger" role="alert">
+        Shoot! I couldn't find any happy hours near you.
+      </div>
+    <% end %>
+  </div>
 </div>
 <% end %>
+
 
   <div class="col-sm-6">
     <div class="panel-container top-eats">

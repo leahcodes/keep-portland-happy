@@ -31,6 +31,7 @@ a {
   color: #52d4d4;
 }
 
+
 .container {
   padding-bottom: 30px;
 }
@@ -45,6 +46,10 @@ a:hover {
 .center {
   text-align: center;
 }
+
+.indent-pp {
+  padding-left: 20px;
+}
 .black {
   color: black;
 }
@@ -58,6 +63,11 @@ label {
   font-weight: normal;
 }
 
+.smaller {
+  font-size: 0.7em;
+  color: white;
+}
+
 input#search {
   opacity: 0.8;
 }
@@ -68,6 +78,15 @@ input#search {
   z-index: 1;
   text-align: center;
   background: linear-gradient(rgba(50,50,50,0.9), rgba(50,50,50,0.9))
+}
+
+.dropdown-menu {
+  min-width: 200px;
+}
+
+.dropdown-menu > li > a {
+  display: inline;
+  padding: 5px;
 }
 
 .main-logo {
@@ -126,7 +145,7 @@ input#search {
   background: none;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3 {
   text-transform: uppercase;
 }
 
@@ -254,4 +273,12 @@ video#bgvid {
   background-size: cover;
   opacity: 0.8;
   width: 100%;
+}
+
+.eat-result-card {
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 10px;
+  margin-top: 5%;
+  border-radius: 5px;
 }

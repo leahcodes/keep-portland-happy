@@ -12,16 +12,16 @@ gem 'hirb'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'simple_form'
 gem 'devise'
-gem 'mailcatcher'
 gem 'seed_dump'
-gem "paperclip", "~> 4.3"
 gem "refile", require: "refile/rails"
 gem "refile-mini_magick"
 gem 'refile-postgres'
 gem 'geocoder'
+# gem "refile-s3"
 
 
 group :development do
+  gem 'mailcatcher'
   gem 'byebug'
   gem 'web-console'
   gem 'spring'

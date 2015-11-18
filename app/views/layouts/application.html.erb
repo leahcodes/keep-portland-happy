@@ -37,9 +37,9 @@
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <% if current_user.favorites.any? %>
               <% current_user.favorites.each do |fave| %>
-                <li class="keep-it-together">
-                  <%= link_to fave.eat.name, eat_path(fave.eat) %>
+                <li>
                   <%= link_to ('<span class="glyphicon glyphicon-remove red"></span>').html_safe, user_favorite_path(current_user, fave), :method => 'delete' %>
+                  <%= link_to fave.eat.name, eat_path(fave.eat) %>
                 </li>
               <% end %>
             <% else %>

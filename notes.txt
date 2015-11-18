@@ -1,3 +1,9 @@
+<% if happy_now?(@eat) %>
+  <h2>It's happy hour!</h2>
+<% else %>
+  <h2>It's not happy hour :( </h2>
+<% end %>
+
 <div class="col-md-12 search-results">
   <% if @searched_eats == nil %>
     <p>test
@@ -18,17 +24,17 @@
 
 SHOULD BE MOBILE first!
 
-- Google Map - what's near me?
 - Happy hours NOW
 - Google reviews
 - See pics - user uploaded and instagram
-- Rating
 - Comments/Review - incorporate twitter?
 - Cost
 - Sort by price, name, location
 - search bar
 - pagination
 
+- XXXXXX DONE XXXXXXGoogle Map - what's near me?
+- XXXXXX DONE XXXXXX Rating
 
 searching by location:
 - user's location is set to downtown portland by default (powell's?)
