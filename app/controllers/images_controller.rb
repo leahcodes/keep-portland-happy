@@ -15,8 +15,10 @@ class ImagesController < ApplicationController
 
   def create
     @eat = Eat.find(params[:eat_id])
-    @image = Image.new(image_params)
+    @image = @eat.images.new(image_params)
     if @image.save
+      @eat.images.push(@image)
+      current_user.images.push(@image)
       flash[:notice] = "New Image Added!"
       redirect_to eat_path(@eat)
     else
@@ -49,6 +51,6 @@ class ImagesController < ApplicationController
 
   private
   def image_params
-    params.require(:image).permit(:url, :title, :caption)
+    params.require(:image).permit(:profile_image, :title, :caption)
   end
 end

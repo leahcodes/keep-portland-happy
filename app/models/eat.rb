@@ -5,6 +5,9 @@ class Eat < ActiveRecord::Base
   has_many :reviews
   has_many :users, :through => :reviews
 
+  has_many :images
+  has_many :users, :through => :images
+
 
   validates :name, :presence => true
   validates :category, :presence => true

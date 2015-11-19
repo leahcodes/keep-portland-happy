@@ -1,6 +1,19 @@
 <div class="container">
   <div class="col-md-6 col-md-push-6">
+
     <%= image_tag(attachment_url(@eat, :profile_image, :fill, 500, 300, format: "jpg"), class: "img-responsive") %>
+
+    <h3>Upload photos for this location:</h3>
+    <%= render '/images/form' %>
+
+    <% if @eat.images.any? %>
+      <% @eat.images.each do |image| %>
+        <%= image_tag attachment_url(image, :profile_image, :fill, 300, 200, format: "jpg") %>
+      <% end %>
+    <% else %>
+      <p>No user photos yes.</p>
+    <% end %>
+
     <h2>Recent Instagram photos:</h2>
     <div class="instagram-container">
     <iframe src="http://widget.websta.me/in/location<%= @eat.instagram_location_id %>/?s=150&w=5&h=5&b=0&p=0" allowtransparency="true" frameborder="0" scrolling="yes" style="border:none;width:100%;" ></iframe>
@@ -14,40 +27,26 @@
 
     <h1><%= @eat.name %></h1>
     <% if @eat.reviews.any? %>
-      <% all_reviews = [] %>
-      <% @eat.reviews.each do |review| %>
-        <% all_reviews.push(review.rating) %>
-        <% @avg_rating = all_reviews.inject(0.0) { |sum, el| sum + el } / all_reviews.size %>
-      <% end %>
-
-      <% if @avg_rating.between?(0, 1.5) %>
-         <span class="glyphicon glyphicon-star"></span>
-      <% elsif @avg_rating.between?(1.5, 2.5) %>
-         <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-      <% elsif @avg_rating.between?(2.5, 3.5) %>
-          <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-      <% elsif @avg_rating.between?(3.5, 4.5) %>
-         <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-      <% else @avg_rating.between?(4.5, 5) %>
-          <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-      <% end %>
-
-      <% if all_reviews.length == 1 %>
-        (<%= all_reviews.length %> review)
+      <%= display_in_stars(@eat) %>
+      <% if @eat.reviews.length == 1 %>
+        (1 review)
       <% else %>
-        (<%= all_reviews.length %> reviews)
+        (<%= @eat.reviews.length %> reviews)
       <% end %>
 
     <% else %>
       No reviews.
     <% end %>
 
+    <h4 class="italic"><%= @eat.category %> in <%= @eat.location %> (<%= @eat.neighborhood %>)</h4>
 
-    <h4><%= @eat.category %></h4>
-
-    <h2>Address: <%= @eat.address %></h2>
-    <h2>Phone: <%= @eat.phone %></h2>
-    <h2>Website: <a href="<%= @eat.website %>"><%= @eat.website %></a></h2>
+    <h4>Address: <%= @eat.address %></h4>
+    <div class="google-map">
+      <iframe width="500" height="400" frameborder="0"
+src="https://www.google.com/maps/embed/v1/place?q=<%= @eat.address %>&key=AIzaSyBTJUXT4x4Azd5cAqivGUrtTilq_rsF5lk" allowfullscreen></iframe>
+    </div>
+    <h4>Phone: <%= @eat.phone %></h4>
+    <h4>Website: <a href="<%= @eat.website %>"><%= @eat.website %></a></h4>
     <h2>Happy Hour:</h2>
     <div class="indent-pp">
       <% if happy_now?(@eat) %>
@@ -73,7 +72,6 @@
       <h4>Saturday: <%= format_time(@eat.sat_open) %> - <%= format_time(@eat.sat_close) %></h4>
       <h4>Sunday: <%= format_time(@eat.sun_open) %> - <%= format_time(@eat.sun_close) %></h4>
     </div>
-    <h2>Part of Town: <%= @eat.location %> (<%= @eat.neighborhood %>)</h2>
     <h2 class="menuShow">Menu <span class="caret menu-caret"></span></h2>
     <div class="menu">
       <p><%= simple_format(@eat.menu) %></p>

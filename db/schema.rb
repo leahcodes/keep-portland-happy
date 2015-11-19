@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118235603) do
+ActiveRecord::Schema.define(version: 20151119185125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,12 +72,12 @@ ActiveRecord::Schema.define(version: 20151118235603) do
 
   create_table "images", force: :cascade do |t|
     t.string   "title"
-    t.string   "url"
-    t.boolean  "main"
-    t.integer  "review_id"
+    t.string   "profile_image_id"
+    t.integer  "eat_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "caption"
+    t.integer  "user_id"
   end
 
   create_table "refile_attachments", force: :cascade do |t|
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20151118235603) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "address",                default: "Powell's Books, Portland OR"
+    t.float    "distance_to_travel"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

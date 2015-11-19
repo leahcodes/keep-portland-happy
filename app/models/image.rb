@@ -1,4 +1,4 @@
 class Image < ActiveRecord::Base
   belongs_to :review
-  attachment :url
+  attachment :profile_image
 end

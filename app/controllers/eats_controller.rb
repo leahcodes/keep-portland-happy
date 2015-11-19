@@ -9,9 +9,10 @@ class EatsController < ApplicationController
     @top_eats = Eat.all #do logic at some point!
     @user = current_user
 
-    if params[:search].present?
-      @user_params = params[:search]
-      @user.update(:address => @user_params)
+    if params[:search].present? && params[:distance].present?
+      user_address = params[:search]
+      user_distance = params[:distance]
+      @user.update(:address => user_address, :distance_to_travel => user_distance)
       if @user.save
         redirect_to eats_path
       else
@@ -27,6 +28,7 @@ class EatsController < ApplicationController
   def show
     @eat = Eat.find(params[:id])
     @review = Review.new
+    @image = Image.new
     if user_signed_in? && Review.exists?(user_id: current_user.id, eat_id: @eat.id)
       @user_review = Review.where(user_id: current_user.id, eat_id: @eat.id)
     end

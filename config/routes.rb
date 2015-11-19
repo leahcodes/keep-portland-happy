@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :eats do
     resources :reviews
+    resources :images
   end
 
   resources :users do
