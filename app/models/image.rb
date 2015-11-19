@@ -1,4 +1,5 @@
 class Image < ActiveRecord::Base
-  belongs_to :review
+  belongs_to :user
+  belongs_to :eat
   attachment :profile_image
 end

@@ -3,12 +3,22 @@
 
     <%= image_tag(attachment_url(@eat, :profile_image, :fill, 500, 300, format: "jpg"), class: "img-responsive") %>
 
-    <h3>Upload photos for this location:</h3>
+    <h3>Upload photos:</h3>
     <%= render '/images/form' %>
 
+    <h3>Recent user photos:</h3>
     <% if @eat.images.any? %>
-      <% @eat.images.each do |image| %>
-        <%= image_tag attachment_url(image, :profile_image, :fill, 300, 200, format: "jpg") %>
+      <%= link_to eat_image_path(@eat, @eat.images.last) do %>
+        <%= image_tag attachment_url(@eat.images.last, :profile_image), class: "img-responsive" %>
+      <% end %>
+      <br>
+      <% @eat.images.offset(1).last(4).each do |image| %>
+        <%= link_to eat_image_path(@eat, image) do %>
+          <%= image_tag attachment_url(image, :profile_image, :fill, 100, 75, format: "jpg") %>
+        <% end %>
+      <% end %>
+      <% if @eat.images.length > 5 %>
+        <span class="glyphicon glyphicon-menu-right larger"></span>
       <% end %>
     <% else %>
       <p>No user photos yes.</p>
@@ -25,7 +35,10 @@
       <p><%= link_to "Delete this Eat", eat_path(@eat), data: { confirm: "Are you sure you want to do that?" }, method: 'delete' %></p>
     <% end %>
 
+
+
     <h1><%= @eat.name %></h1>
+    <h4 class="italic"><%= @eat.category %> in <%= @eat.location %> (<%= @eat.neighborhood %>)</h4>
     <% if @eat.reviews.any? %>
       <%= display_in_stars(@eat) %>
       <% if @eat.reviews.length == 1 %>
@@ -38,7 +51,7 @@
       No reviews.
     <% end %>
 
-    <h4 class="italic"><%= @eat.category %> in <%= @eat.location %> (<%= @eat.neighborhood %>)</h4>
+    <hr>
 
     <h4>Address: <%= @eat.address %></h4>
     <div class="google-map">
@@ -87,17 +100,7 @@ src="https://www.google.com/maps/embed/v1/place?q=<%= @eat.address %>&key=AIzaSy
     <% if @eat.reviews.any? %>
       <% @eat.reviews.each do |review| %>
         <h2><%= review.title %></h2>
-        <% if review.rating.between?(0, 1.5) %>
-           <span class="glyphicon glyphicon-star"></span>
-        <% elsif review.rating.between?(1.5, 2.5) %>
-           <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-        <% elsif review.rating.between?(2.5, 3.5) %>
-            <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-        <% elsif review.rating.between?(3.5, 4.5) %>
-           <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-        <% else review.rating.between?(4.5, 5) %>
-            <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-        <% end %>
+        <%= display_in_stars(@eat) %>
         <p><%= review.content %></p>
         <p>Posted by <%= review.user.user_name %> <%= time_ago_in_words(review.created_at) %> ago</p>
       <% end %>

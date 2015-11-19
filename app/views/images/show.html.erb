@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="container">
+    <%= image_tag attachment_url(@image, :profile_image), class: "img-responsive" %>
+  </div>
+  <br>
+  <h3><%= @image.title %></h3>
+  <h4><%= @image.caption %></h4>
+  <p>Uploaded on <%= @image.created_at.strftime("%m/%d/%Y") %> by <%= @image.user.user_name %></p>
+  <hr>
+  <p><%= link_to 'Back', :back %></p>
+</div>
