@@ -21,7 +21,10 @@ class ReviewsController < ApplicationController
     @eat = Eat.find(params[:eat_id])
     @review = @eat.reviews.new(review_params)
     if @review.save
+      new_rating = @eat.reviews.average(:rating).to_f
       current_user.reviews.push(@review)
+      @eat.update(average_rating: new_rating)
+      binding.pry
       flash[:notice] = "Review Added!"
       respond_to do |format|
         format.html { redirect_to eat_path(@eat) }

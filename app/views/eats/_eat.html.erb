@@ -8,28 +8,12 @@
           <p><%= eat.distance_from(current_user.address).round(1) %> miles away</p>
         <% end %>
         <% if happy_now?(eat) %>
-          <p class="red">It's happy hour now!</p>
+          <h3 class="red">It's happy hour now!</h3>
         <% else %>
-          <p>No happy hour currently</p>
+          <p>Not currently happy hour</p>
         <% end %>
         <% if eat.reviews.any? %>
-          <% all_reviews = [] %>
-          <% eat.reviews.each do |review| %>
-            <% all_reviews.push(review.rating) %>
-            <% @avg_rating = all_reviews.inject(0.0) { |sum, el| sum + el } / all_reviews.size %>
-          <% end %>
-
-          <% if @avg_rating.between?(0, 1.5) %>
-             <span class="glyphicon glyphicon-star"></span>
-          <% elsif @avg_rating.between?(1.5, 2.5) %>
-             <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-          <% elsif @avg_rating.between?(2.5, 3.5) %>
-              <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-          <% elsif @avg_rating.between?(3.5, 4.5) %>
-             <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-          <% else @avg_rating.between?(4.5, 5) %>
-              <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span>
-          <% end %>
+          <%= display_in_stars(eat) %>
           <br>
         <% else %>
         <p>No reviews</p>

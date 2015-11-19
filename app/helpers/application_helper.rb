@@ -103,4 +103,18 @@ module ApplicationHelper
     end
     formatted_time.join("")
   end
+
+  def display_in_stars(eat)
+     (if eat.average_rating.between?(0, 1.5)
+       "<span class='glyphicon glyphicon-star'></span>"
+     elsif eat.average_rating.between?(1.5, 2.5)
+       "<span class='glyphicon glyphicon-star'></span> <span class='glyphicon glyphicon-star'></span>"
+     elsif eat.average_rating.between?(2.5, 3.5)
+        "<span class='glyphicon glyphicon-star'></span> <span class='glyphicon glyphicon-star'></span> <span class='glyphicon glyphicon-star'></span>"
+     elsif eat.average_rating.between?(3.5, 4.5)
+      "<span class='glyphicon glyphicon-star'></span> <span class='glyphicon glyphicon-star'></span> <span class='glyphicon glyphicon-star'></span> <span class='glyphicon glyphicon-star'></span>"
+     else eat.average_rating.between?(4.5, 5)
+        "<span class='glyphicon glyphicon-star'></span> <span class='glyphicon glyphicon-star'></span> <span class='glyphicon glyphicon-star'></span> <span class='glyphicon glyphicon-star'></span> <span class='glyphicon glyphicon-star'></span>"
+     end).html_safe
+  end
 end

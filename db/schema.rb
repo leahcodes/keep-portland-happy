@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118224729) do
+ActiveRecord::Schema.define(version: 20151118235603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20151118224729) do
     t.float    "sun_open"
     t.float    "sun_close"
     t.string   "instagram_location_id"
+    t.float    "average_rating"
   end
 
   create_table "favorites", force: :cascade do |t|
