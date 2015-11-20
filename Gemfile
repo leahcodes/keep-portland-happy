@@ -13,11 +13,12 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'simple_form'
 gem 'devise'
 gem 'seed_dump'
-gem "refile", require: "refile/rails"
 gem "refile-mini_magick"
 gem 'refile-postgres'
 gem 'geocoder'
-# gem "refile-s3"
+gem "refile", require: "refile/rails"
+gem "refile-s3"
+gem 'dotenv-rails', :groups => [:development, :test]
 
 
 group :development do
