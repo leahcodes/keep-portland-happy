@@ -160,7 +160,9 @@ input#search, input#distance {
 h1, h2, h3 {
   text-transform: uppercase;
 }
-
+.left-align {
+  text-align: left !important;
+}
 .navbar-avatar {
   border: 1px solid #52d4d4;
   border-radius: 3px;
@@ -202,6 +204,26 @@ h1, h2, h3 {
   border-radius: 5px;
 }
 
+.well {
+  background: linear-gradient(rgba(50,50,50,0.8), rgba(50,50,50,0.8));
+  box-shadow: none;
+  margin-top: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.carousel-control.right, .carousel-control.left {
+  background-image: none;
+}
+
+.carousel-control.left {
+  margin: -30px;
+}
+
+.carousel-control.right {
+  margin: -30px;
+}
+
 .logo-jumbotron {
   padding: 10px;
   background-color:rgba(0, 0, 0, 0.0);
@@ -218,6 +240,10 @@ h1, h2, h3 {
   margin: 10px;
   border-radius: 10px;
   text-align: center;
+}
+
+.eat-card:hover {
+  opacity: none;
 }
 
 .eat-card-image {
@@ -321,8 +347,7 @@ video#bgvid {
   position: absolute;
   top: 0;
   left: 0;
-  width: 90% !important;
-  height: 90% !important;
+  height: 100% !important;
   padding: 5%;
 }
 
@@ -343,4 +368,9 @@ video#bgvid {
     video, .video-container {
       display: none;
     }
+}
+
+.carousel-control {
+  padding-top:10%;
+  width:5%;
 }

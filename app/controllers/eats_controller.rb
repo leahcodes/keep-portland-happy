@@ -6,7 +6,9 @@ class EatsController < ApplicationController
   def index
     @newest_eats = Eat.all.order("created_at DESC")
     @eats = Eat.all
-    @top_eats = Eat.all #do logic at some point!
+    @top_eats = Eat.all.order("average_rating DESC")
+    @top_3_eats = @top_eats.values_at(0,1,2)
+    @top_4_to_6_eats = @top_eats.values_at(3,4,2)
     @user = current_user
 
     if params[:search].present? && params[:distance].present?

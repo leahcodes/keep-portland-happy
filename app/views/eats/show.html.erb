@@ -24,18 +24,19 @@
       <p>No user photos yes.</p>
     <% end %>
 
-    <h2>Recent Instagram photos:</h2>
+    <h3>Recent Instagram photos:</h3>
     <div class="instagram-container">
     <iframe src="http://widget.websta.me/in/location<%= @eat.instagram_location_id %>/?s=150&w=5&h=5&b=0&p=0" allowtransparency="true" frameborder="0" scrolling="yes" style="border:none;width:100%;" ></iframe>
     </div>
   </div>
+
+
+
   <div class="col-md-6 col-md-pull-6">
     <% if user_signed_in? && current_user.admin? %>
       <p><%= link_to "Edit this Eat", edit_eat_path(@eat) %></p>
       <p><%= link_to "Delete this Eat", eat_path(@eat), data: { confirm: "Are you sure you want to do that?" }, method: 'delete' %></p>
     <% end %>
-
-
 
     <h1><%= @eat.name %></h1>
     <h4 class="italic"><%= @eat.category %> in <%= @eat.location %> (<%= @eat.neighborhood %>)</h4>
@@ -103,6 +104,9 @@ src="https://www.google.com/maps/embed/v1/place?q=<%= @eat.address %>&key=AIzaSy
         <%= display_in_stars(@eat) %>
         <p><%= review.content %></p>
         <p>Posted by <%= review.user.user_name %> <%= time_ago_in_words(review.created_at) %> ago</p>
+      <% if user_signed_in? && current_user.admin? %>
+        <p><%= link_to "delete this review", eat_review_path(@eat, review), data: { confirm: "Are you sure you want to do that?" }, method: 'delete' %></p>
+      <% end %>
       <% end %>
     <% end %>
 

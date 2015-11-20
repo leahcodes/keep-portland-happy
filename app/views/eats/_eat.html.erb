@@ -3,9 +3,8 @@
   <div class="eat-card" style="background-image: url(<%= attachment_url(eat, :profile_image, :fill, 600, 400, format: "jpg") %>); background-style: contain; background-position: center; background-repeat: no-repeat;">
     <div class="eat-card-text">
       <h2 style="display: inline; padding-left: 10px; padding-right: 10px;"><%= link_to eat.name, eat %></h2>
-      <h4><%= eat.location %> (<%= eat.neighborhood %>)</h4>
         <% if user_signed_in? %>
-          <p><%= eat.distance_from(current_user.address).round(1) %> miles away</p>
+            <p><%= eat.distance_from(current_user.address).round(1) %> miles away in <%= eat.location %> (<%= eat.neighborhood %>)</p>
         <% end %>
         <% if happy_now?(eat) %>
           <h3 class="red">It's happy hour now!</h3>

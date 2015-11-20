@@ -38,6 +38,20 @@ $(function() {
   $(".search-results").hide();
   $(".search-button").click(function() {
     (".search-results").show();
-  })
+  });
+
+  $('#top-carousel').carousel({
+	interval: 10000
+	})
+  $('#top-carousel').on('slid.bs.carousel', function() {
+    	//alert("slid");
+	});
+
+  // $('#newest-carousel').carousel({
+  // interval: 10000
+  // })
+  // $('#newest-carousel').on('slid.bs.carousel', function() {
+  //     alert("slid");
+  // });
 
 });

@@ -24,7 +24,6 @@ class ReviewsController < ApplicationController
       new_rating = @eat.reviews.average(:rating).to_f
       current_user.reviews.push(@review)
       @eat.update(average_rating: new_rating)
-      binding.pry
       flash[:notice] = "Review Added!"
       respond_to do |format|
         format.html { redirect_to eat_path(@eat) }
@@ -55,10 +54,10 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    # @eat = Eat.find(params[:id])
-    # @eat.destroy
-    # flash[:notice] = "Be gone with ye'!"
-    # redirect_to eats_path
+    @review = Review.find(params[:id])
+    @review.destroy
+    flash[:notice] = "Be gone with ye'!"
+    redirect_to eat_path(@review.eat)
   end
 
   private

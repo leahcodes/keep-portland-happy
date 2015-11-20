@@ -35,6 +35,9 @@
     </div>
   <% end %>
 
+
+
+
 <% if user_signed_in? %>
   <h1 class="center">Happy hours near you:</h1>
   <div class="container">
@@ -72,6 +75,114 @@ src="https://www.google.com/maps/embed/v1/place?q=<%= @user.address %>&key=AIzaS
 </div>
 <% end %>
 
+<div class="container">
+  <div class="well">
+    <div class="carousel slide" id="top-carousel">
+      <div class="carousel-inner">
+        <div class="item active">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="eat-card">
+                <div class="white">
+                  <h1>Top Portland happy hours</h1>
+                  <h3>As ranked by users!</h3>
+                </div>
+              </div>
+            </div>
+            <% @top_eats.values_at(0).each do |eat| %>
+              <div class="col-sm-6">
+                <%= render eat %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="item">
+          <div class="row">
+            <% @top_eats.values_at(1,2).each do |eat| %>
+              <div class="col-sm-6">
+                <%= render eat %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="item">
+          <div class="row">
+            <% @top_eats.values_at(3,4).each do |eat| %>
+              <div class="col-sm-6">
+                <%= render eat %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="item">
+          <div class="row">
+            <% @top_eats.values_at(5,6).each do |eat| %>
+              <div class="col-sm-6">
+                <%= render eat %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#top-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+      <a class="right carousel-control" href="#top-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="well">
+    <div class="carousel slide" id="newest-carousel">
+      <div class="carousel-inner">
+        <div class="item active">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="eat-card">
+                <div class="white">
+                  <h1>Recently added happy hours</h1>
+                </div>
+              </div>
+            </div>
+            <% @newest_eats.values_at(0).each do |eat| %>
+              <div class="col-sm-6">
+                <%= render eat %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="item">
+          <div class="row">
+            <% @newest_eats.values_at(1,2).each do |eat| %>
+              <div class="col-sm-6">
+                <%= render eat %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="item">
+          <div class="row">
+            <% @newest_eats.values_at(3,4).each do |eat| %>
+              <div class="col-sm-6">
+                <%= render eat %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="item">
+          <div class="row">
+            <% @newest_eats.values_at(5,6).each do |eat| %>
+              <div class="col-sm-6">
+                <%= render eat %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#newest-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+      <a class="right carousel-control" href="#newest-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+    </div>
+  </div>
+</div>
 
 
   <div class="col-sm-6">
