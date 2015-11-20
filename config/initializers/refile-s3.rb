@@ -1,8 +1,8 @@
 # require "refile/s3"
 #
 # aws = {
-#   access_key_id: "AKIAITDWPYQNWQYVDZEA",
-#   secret_access_key: "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",
+#   access_key_id: "ENV['S3-ACCESS-KEY-ID']",
+#   secret_access_key: "ENV['S3-SECRET-ACCESS-KEY']",
 #   region: "Oregon",
 #   bucket: "keep-portland-happy",
 # }
