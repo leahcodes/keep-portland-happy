@@ -10,9 +10,9 @@
           <% if user_signed_in? %>
             <div class="black">
               <%= form_tag eats_path, :method => :get do %>
-                  <%= text_field_tag :search, params[:search], class: "form-control" %>
+                  <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "e.g. Powell's Books, Portland OR", required: true %>
                   <h4 class="white">How many miles are you willing to travel?</h4>
-                  <%= number_field_tag :distance, params[:distance], min: 0.5, step: 0.5, class: "form-control" %>
+                  <%= number_field_tag :distance, params[:distance], min: 0.5, step: 0.5, class: "form-control", required: true %>
                   <br>
                   <%= submit_tag "Make me happy!", :name => nil, :class => "header-link", :id => "search-button" %>
                 </div>
@@ -44,13 +44,22 @@
     <div class="col-md-7">
       <div class="google-map">
         <iframe width="500" height="400" frameborder="0"
-src="https://www.google.com/maps/embed/v1/place?q=<%= @user.address %>&key=AIzaSyBTJUXT4x4Azd5cAqivGUrtTilq_rsF5lk" allowfullscreen></iframe>
+src="https://www.google.com/maps/embed/v1/place?q=<%= @user.address %>&key=<%= ENV['GOOGLE_MAPS_KEY'] %>" allowfullscreen></iframe>
       </div>
-  </div>
+
+      <script>
+          markers = handler.addMarkers(<%=raw @hash.to_json %>);
+      </script>
+
+      <div class="google-map">
+        <div id="map" style='width: 600px; height: 400px;'></div>
+      </div>
+    </div>
+
 
   <div class="col-md-5">
-    <% if Eat.near(@user.address, @user.distance_to_travel).any? %>
-      <% Eat.near(@user.address, @user.distance_to_travel, order: 'distance').each do |eat| %>
+    <% if @nearby_eats.any? %>
+      <% @nearby_eats.each do |eat| %>
         <div class="eat-result-card">
           <h3><%= link_to eat.name, eat %> <span class="smaller"><%= eat.distance.round(1) %> miles away</span></h3>
           <div class="indent-pp">

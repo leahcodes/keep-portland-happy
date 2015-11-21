@@ -57,7 +57,7 @@
     <h4>Address: <%= @eat.address %></h4>
     <div class="google-map">
       <iframe width="500" height="400" frameborder="0"
-src="https://www.google.com/maps/embed/v1/place?q=<%= @eat.address %>&key=AIzaSyBTJUXT4x4Azd5cAqivGUrtTilq_rsF5lk" allowfullscreen></iframe>
+src="https://www.google.com/maps/embed/v1/place?q=<%= @eat.address %>&key=<%= ENV['GOOGLE_MAPS_KEY'] %>" allowfullscreen></iframe>
     </div>
     <h4>Phone: <%= @eat.phone %></h4>
     <h4>Website: <a href="<%= @eat.website %>"><%= @eat.website %></a></h4>

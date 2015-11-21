@@ -328,7 +328,7 @@ video#bgvid {
   height: 0;
   overflow: hidden;
 }
-.google-map iframe {
+.google-map iframe, .google-map #map {
   position: absolute;
   top: 0;
   left: 0;

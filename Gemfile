@@ -19,6 +19,8 @@ gem 'geocoder'
 gem "refile", require: "refile/rails"
 gem "refile-s3"
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'gmaps4rails'
+gem 'gon'
 
 
 group :development do

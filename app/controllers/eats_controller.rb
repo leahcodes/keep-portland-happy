@@ -10,6 +10,15 @@ class EatsController < ApplicationController
     @top_3_eats = @top_eats.values_at(0,1,2)
     @top_4_to_6_eats = @top_eats.values_at(3,4,2)
     @user = current_user
+    @nearby_eats = Eat.near(@user.address, @user.distance_to_travel, order: 'distance')
+
+    gon.user = current_user
+    gon.nearby_eats = Eat.near(current_user.address, current_user.distance_to_travel, order: 'distance')
+
+    @hash = Gmaps4rails.build_markers(@user) do |user, marker|
+      marker.lat user.latitude
+      marker.lng user.longitude
+    end
 
     if params[:search].present? && params[:distance].present?
       user_address = params[:search]
