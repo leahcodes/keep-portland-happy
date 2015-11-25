@@ -42,10 +42,6 @@
   <h1 class="center">Happy hours near you:</h1>
   <div class="container">
     <div class="col-md-7">
-      <div class="google-map">
-        <iframe width="500" height="400" frameborder="0"
-src="https://www.google.com/maps/embed/v1/place?q=<%= @user.address %>&key=<%= ENV['GOOGLE_MAPS_KEY'] %>" allowfullscreen></iframe>
-      </div>
 
       <script>
           markers = handler.addMarkers(<%=raw @hash.to_json %>);

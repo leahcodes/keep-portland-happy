@@ -113,16 +113,39 @@ $(function() {
 //   directionsDisplay.setMap(handler.getMap());
 // });
 
-var handler = Gmaps.build('Google');
-handler.buildMap({ internal: {id: 'map'}}, function(){
-  var markers = handler.addMarkers([
-    { lat: gon.user.latitude, lng: gon.user.longitude}
-    for (i = 0; i < gon.nearby_eats; i++ {
-      , { lat: eat[i].latitude, lng: eat[i].longitude }
-    });
-  ]);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
+// var handler = Gmaps.build('Google');
+// handler.buildMap({ internal: {id: 'map'}}, function(){
+//   var marker, i;
+//   for (i = 0; i < gon.nearby_eats.length; i++) {
+//   marker = new google.maps.Marker({
+//     position: new google.maps.LatLng(gon.nearby_eats[i].latitude, gon.nearby_eats[i].longitude),
+//   });
+//
+//   handler.bounds.extendWith(markers);
+//   handler.fitMapToBounds();
+// }
+// });
 
+var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 14,
+      center: new google.maps.LatLng(gon.user.latitude, gon.user.longitude),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < gon.nearby_eats.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(gon.nearby_eats[i].latitude, gon.nearby_eats[i].longitude),
+        map: map,
+        icon: "/images/logo-happy-green-small.png"
+      });
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(gon.user.latitude, gon.user.longitude),
+        map: map,
+        icon: "/images/logo-blue-small.png"
+      });
+    }
 });
