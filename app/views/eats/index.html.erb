@@ -50,22 +50,24 @@
     </div>
 
   <div class="col-md-5">
-    <% if @nearby_eats.any? %>
-      <% @nearby_eats.each do |eat| %>
-        <div class="eat-result-card">
-          <h3><%= link_to eat.name, eat %> <span class="smaller"><%= eat.distance.round(1) %> miles away</span></h3>
-          <div class="indent-pp">
-            <% if today_happy_end(eat) - today_happy_start(eat) > 0 %>
-              <p>Happy hour today:
-                <%= format_time(today_happy_start(eat)) %> - <%= format_time(today_happy_end(eat)) %>
-              <% if happy_now?(eat) %>
-                <h3 class="red">It's happy hour!</p>
-              <% else %>
-                <p>(Not currently happy hour)</p>
+    <% if @nearby_eats %>
+      <% if @nearby_eats.any? %>
+        <% @nearby_eats.each do |eat| %>
+          <div class="eat-result-card">
+            <h3><%= link_to eat.name, eat %> <span class="smaller"><%= eat.distance.round(1) %> miles away</span></h3>
+            <div class="indent-pp">
+              <% if today_happy_end(eat) - today_happy_start(eat) > 0 %>
+                <p>Happy hour today:
+                  <%= format_time(today_happy_start(eat)) %> - <%= format_time(today_happy_end(eat)) %>
+                <% if happy_now?(eat) %>
+                  <h3 class="red">It's happy hour!</p>
+                <% else %>
+                  <p>(Not currently happy hour)</p>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     <% else %>
       <div class="alert alert-danger" role="alert">
@@ -185,5 +187,5 @@
   </div>
 </div>
 
-  
+
 </div>
