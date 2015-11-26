@@ -26,6 +26,23 @@
 src="https://www.google.com/maps/embed/v1/place?q=<%= @user.address %>&key=<%= ENV['GOOGLE_MAPS_KEY'] %>" allowfullscreen></iframe>
 </div> -->
 
+<!-- <div class="col-sm-6">
+  <div class="panel-container top-eats">
+    <h1 class="center">top pdx happy hours</h1>
+    <% @top_eats.each do |eat| %>
+      <%= render eat %>
+    <% end %>
+  </div>
+</div>
+
+<div class="col-sm-6">
+  <div class="panel-container newest-eats">
+    <h1 class="center">newest pdx happy hours</h1>
+    <% @newest_eats.each do |eat| %>
+      <%= render eat %>
+    <% end %>
+  </div>
+</div> -->
 
 SHOULD BE MOBILE first!
 
