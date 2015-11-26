@@ -1,44 +1,45 @@
 module ApplicationHelper
 
   def happy_now?(eat)
-    if Time.now.monday?
-      if ((Time.now.hour) + (Time.now.min.to_f/60)).between?(eat.mon_happy_start, eat.mon_happy_end)
+    now = Time.now
+    if now.monday?
+      if ((now.hour) + (now.min.to_f/60)).between?(eat.mon_happy_start, eat.mon_happy_end)
         true
       else
         false
       end
-    elsif Time.now.tuesday?
-      if ((Time.now.hour) + (Time.now.min.to_f/60)).between?(eat.tues_happy_start, eat.tues_happy_end)
+    elsif now.tuesday?
+      if ((now.hour) + (now.min.to_f/60)).between?(eat.tues_happy_start, eat.tues_happy_end)
         true
       else
         false
       end
-    elsif Time.now.wednesday?
-      if ((Time.now.hour) + (Time.now.min.to_f/60)).between?(eat.wed_happy_start, eat.wed_happy_end)
+    elsif now.wednesday?
+      if ((now.hour) + (now.min.to_f/60)).between?(eat.wed_happy_start, eat.wed_happy_end)
         true
       else
         false
       end
-    elsif Time.now.thursday?
-      if ((Time.now.hour) + (Time.now.min.to_f/60)).between?(eat.thur_happy_start, eat.thur_happy_end)
+    elsif now.thursday?
+      if ((now.hour) + (now.min.to_f/60)).between?(eat.thur_happy_start, eat.thur_happy_end)
         true
       else
         false
       end
-    elsif Time.now.friday?
-      if ((Time.now.hour) + (Time.now.min.to_f/60)).between?(eat.fri_happy_start, eat.fri_happy_end)
+    elsif now.friday?
+      if ((now.hour) + (now.min.to_f/60)).between?(eat.fri_happy_start, eat.fri_happy_end)
         true
       else
         false
       end
-    elsif Time.now.saturday?
-      if ((Time.now.hour) + (Time.now.min.to_f/60)).between?(eat.sat_happy_start, eat.sat_happy_end)
+    elsif now.saturday?
+      if ((now.hour) + (now.min.to_f/60)).between?(eat.sat_happy_start, eat.sat_happy_end)
         true
       else
         false
       end
-    else Time.now.sunday?
-      if ((Time.now.hour) + (Time.now.min.to_f/60)).between?(eat.sun_happy_start, eat.sun_happy_end)
+    else now.sunday?
+      if ((now.hour) + (now.min.to_f/60)).between?(eat.sun_happy_start, eat.sun_happy_end)
         true
       else
         false
@@ -47,37 +48,39 @@ module ApplicationHelper
   end
 
   def today_happy_start(eat)
-    if Time.now.monday?
+    now = Time.now
+    if now.monday?
       eat.mon_happy_start
-    elsif Time.now.tuesday?
+    elsif now.tuesday?
       eat.tues_happy_start
-    elsif Time.now.wednesday?
+    elsif now.wednesday?
       eat.wed_happy_start
-    elsif Time.now.thursday?
+    elsif now.thursday?
       eat.thur_happy_start
-    elsif Time.now.friday?
+    elsif now.friday?
       eat.fri_happy_start
-    elsif Time.now.saturday?
+    elsif now.saturday?
       eat.sat_happy_start
-    else Time.now.sunday?
+    else now.sunday?
       eat.sun_happy_start
     end
   end
 
   def today_happy_end(eat)
-    if Time.now.monday?
+    now = Time.now
+    if now.monday?
       eat.mon_happy_end
-    elsif Time.now.tuesday?
+    elsif now.tuesday?
       eat.tues_happy_end
-    elsif Time.now.wednesday?
+    elsif now.wednesday?
       eat.wed_happy_end
-    elsif Time.now.thursday?
+    elsif now.thursday?
       eat.thur_happy_end
-    elsif Time.now.friday?
+    elsif now.friday?
       eat.fri_happy_end
-    elsif Time.now.saturday?
+    elsif now.saturday?
       eat.sat_happy_end
-    else Time.now.sunday?
+    else now.sunday?
       eat.sun_happy_end
     end
   end
