@@ -37,35 +37,28 @@
 
 <% if user_signed_in? %>
   <h1 class="center">Happy hours near you:</h1>
-  <div class="container">
-    <div class="col-md-7">
-
+  <div class="container center">
       <script>
           markers = handler.addMarkers(<%=raw @hash.to_json %>);
       </script>
-
       <div class="google-map">
-        <div id="map" style='width: 600px; height: 400px;'></div>
+        <div id="map"></div>
       </div>
-    </div>
 
-  <div class="col-md-5">
     <% if @nearby_eats %>
       <% if @nearby_eats.any? %>
         <% @nearby_eats.each do |eat| %>
           <div class="eat-result-card">
-            <h3><%= link_to eat.name, eat %> <span class="smaller"><%= eat.distance.round(1) %> miles away</span></h3>
-            <div class="indent-pp">
+            <h3><%= link_to eat.name, eat %> <span class="smaller"><%= eat.distance.round(1) %> miles</span></h3>
               <% if today_happy_end(eat) - today_happy_start(eat) > 0 %>
                 <p>Happy hour today:
                   <%= format_time(today_happy_start(eat)) %> - <%= format_time(today_happy_end(eat)) %>
                 <% if happy_now?(eat) %>
                   <h3 class="red">It's happy hour!</p>
                 <% else %>
-                  <p>(Not currently happy hour)</p>
+                  <p>Not currently happy hour</p>
                 <% end %>
               <% end %>
-            </div>
           </div>
         <% end %>
       <% else %>
@@ -74,7 +67,6 @@
         </div>
       <% end %>
     <% end %>
-  </div>
 </div>
 <% end %>
 
