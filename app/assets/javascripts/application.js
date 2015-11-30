@@ -126,26 +126,52 @@ $(function() {
 // }
 // });
 
+
 var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 14,
       center: new google.maps.LatLng(gon.user.latitude, gon.user.longitude),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    var infowindow = new google.maps.InfoWindow();
+var userContentString = "<h4>Your Location:</h4>" +
+                            "<p>" + gon.user.address + "</p>"
+    ;
 
-    var marker, i;
 
+    var userInfoWindow = new google.maps.InfoWindow({
+      content: userContentString
+    });
     for (i = 0; i < gon.nearby_eats.length; i++) {
-      marker = new google.maps.Marker({
+      var eatContentString = "<a href='/eats/" + gon.nearby_eats[i].id + "'>" + "<h4>" + gon.nearby_eats[i].name + "</h4>" + "</a>" +
+                              "<p>" + gon.nearby_eats[i].address + "</p>" +
+                              "<p>" + gon.nearby_eats[i].distance.toFixed(2) + " miles away</p>"
+      ;
+      var eatinfowindow = new google.maps.InfoWindow({
+        content: eatContentString
+      });
+      var eatMarker = new google.maps.Marker({
         position: new google.maps.LatLng(gon.nearby_eats[i].latitude, gon.nearby_eats[i].longitude),
         map: map,
-        icon: "/images/logo-happy-green-small.png"
+        icon: "/images/blue-marker.png",
+        info: eatContentString
       });
-      marker = new google.maps.Marker({
+      google.maps.event.addListener(eatMarker, 'click', function() {
+        eatinfowindow.setContent( this.info );
+        eatinfowindow.open(map, this);
+      });
+    };
+      var userMarker = new google.maps.Marker({
         position: new google.maps.LatLng(gon.user.latitude, gon.user.longitude),
         map: map,
-        icon: "/images/logo-blue-small.png"
+        icon: "/images/green-marker.png"
       });
-    }
+      userMarker.addListener('click', function() {
+        userInfoWindow.open(map, userMarker);
+      });
+
+
+
+
+
+
 });
