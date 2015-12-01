@@ -6,7 +6,7 @@
   </div>
   <div class="main-search-text-container">
     <div class="main-search-text-wrapper">
-      <h3>Where are you right now?</h3>
+      <h1>Where are you right now?</h1>
           <% if user_signed_in? %>
             <div class="black">
               <%= form_tag eats_path, :method => :get do %>
@@ -19,9 +19,9 @@
               <% end %>
             </div>
           <% else %>
-            <p>
+            <h3>
               Sign up or log in to get started!
-            </p>
+            </h3>
           <% end %>
     </div>
   </div>
@@ -37,36 +37,42 @@
 
 <% if user_signed_in? %>
   <h1 class="center">Happy hours near you:</h1>
-  <div class="container center">
+  <div class="container user-results-container">
       <script>
           markers = handler.addMarkers(<%=raw @hash.to_json %>);
       </script>
-      <div class="google-map">
-        <div id="map"></div>
+      <div class="map-container">
+        <div class="google-map">
+          <div id="map"></div>
+        </div>
       </div>
 
-    <% if @nearby_eats %>
-      <% if @nearby_eats.any? %>
-        <% @nearby_eats.each do |eat| %>
-          <div class="eat-result-card">
-            <h3><%= link_to eat.name, eat %> <span class="smaller"><%= eat.distance.round(1) %> miles</span></h3>
-              <% if today_happy_end(eat) - today_happy_start(eat) > 0 %>
-                <p>Happy hour today:
-                  <%= format_time(today_happy_start(eat)) %> - <%= format_time(today_happy_end(eat)) %>
-                <% if happy_now?(eat) %>
-                  <h3 class="red">It's happy hour!</p>
-                <% else %>
-                  <p>Not currently happy hour</p>
+    <div class="results-container">
+      <% if @nearby_eats %>
+        <% if @nearby_eats.any? %>
+          <ul>
+          <% @nearby_eats.each do |eat| %>
+              <li>
+                <h3><%= link_to eat.name, eat %> <span class="smaller keep-it-together"><%= eat.distance.round(1) %> miles</span></h3>
+                <% if today_happy_end(eat) - today_happy_start(eat) > 0 %>
+                  <p class="white indent-pp">Happy hour today:
+                    <%= format_time(today_happy_start(eat)) %> - <%= format_time(today_happy_end(eat)) %>
+                  <% if happy_now?(eat) %>
+                    <p class="red indent-pp">It's happy hour!</p>
+                  <% else %>
+                    <p class="white indent-pp">Not currently happy hour</p>
+                  <% end %>
                 <% end %>
-              <% end %>
+              </li>
+          <% end %>
+        </ul>
+        <% else %>
+          <div class="alert alert-danger" role="alert">
+            Shoot! I couldn't find any happy hours near you.
           </div>
         <% end %>
-      <% else %>
-        <div class="alert alert-danger" role="alert">
-          Shoot! I couldn't find any happy hours near you.
-        </div>
       <% end %>
-    <% end %>
+    </div>
 </div>
 <% end %>
 
